@@ -4,6 +4,15 @@
     <Filter Include="LE">
       <UniqueIdentifier>{56745900-4200-880B-ABAE-880B9759880B}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LE\Events">
+      <UniqueIdentifier>{7A234200-E68D-F676-2FCC-A71C9B75D4CB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\LE\Application.h">
@@ -15,10 +24,29 @@
     <ClInclude Include="Source\LE\EntryPoint.h">
       <Filter>LE</Filter>
     </ClInclude>
+    <ClInclude Include="Source\LE\Events\ApplicationEvent.h">
+      <Filter>LE\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Events\Event.h">
+      <Filter>LE\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Events\KeyEvent.h">
+      <Filter>LE\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Events\MouseEvent.h">
+      <Filter>LE\Events</Filter>
+    </ClInclude>
     <ClInclude Include="Source\LE\Log.h">
       <Filter>LE</Filter>
     </ClInclude>
+    <ClInclude Include="Source\LE\Window.h">
+      <Filter>LE</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LEpch.h" />
     <ClInclude Include="Source\LearningEngine.h" />
+    <ClInclude Include="Source\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\LE\Application.cpp">
@@ -26,6 +54,10 @@
     </ClCompile>
     <ClCompile Include="Source\LE\Log.cpp">
       <Filter>LE</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LEpch.cpp" />
+    <ClCompile Include="Source\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,3 +1,6 @@
 [submodule "LearningEngine/ThirdParty/spdlog"]
 	path = LearningEngine/ThirdParty/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "LearningEngine/ThirdParty/GLFW"]
+	path = LearningEngine/ThirdParty/GLFW
+	url = https://github.com/glfw/glfw

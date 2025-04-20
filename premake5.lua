@@ -11,6 +11,12 @@ workspace "LearningEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder
+IncludeDir = {}
+IncludeDir["GLFW"] = "LearningEngine/ThirdParty/GLFW/include"
+
+include "LearningEngine/ThirdParty/GLFW"
+
 project "LearningEngine"
 	location "LearningEngine"
 	kind "SharedLib"
@@ -20,6 +26,9 @@ project "LearningEngine"
 	targetdir ("Binaries/" .. outputdir .. "/%{prj.name}")
 	objdir ("Intermediate/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "LEpch.h"
+	pchsource "LearningEngine/Source/LEpch.cpp"
+
 	files
 	{
 		"%{prj.name}/Source/**.h", 
@@ -28,7 +37,15 @@ project "LearningEngine"
 
 	includedirs
 	{
-		"%{prj.name}/ThirdParty/spdlog/include"
+		"%{prj.name}/Source",
+		"%{prj.name}/ThirdParty/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
@@ -48,7 +65,11 @@ project "LearningEngine"
 		}
 
 	filter "configurations:Debug"
-		defines "LE_DEBUG"
+		defines
+		{
+			"LE_DEBUG",
+			"LE_ENABLE_ASSERTS"
+		}
 		symbols "On"
 		
 	filter "configurations:Release"
@@ -68,7 +89,7 @@ project "Sandbox"
 	targetdir ("Binaries/" .. outputdir .. "/%{prj.name}")
 	objdir ("Intermediate/" .. outputdir .. "/%{prj.name}")
 
-		files
+	files
 	{
 		"%{prj.name}/Source/**.h", 
 		"%{prj.name}/Source/**.cpp"
