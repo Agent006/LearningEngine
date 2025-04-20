@@ -8,3 +8,5 @@
 /* Entry Point */
 #include "LE/EntryPoint.h"
 /*------------------------*/
+
+#include "LE/Log.h"
