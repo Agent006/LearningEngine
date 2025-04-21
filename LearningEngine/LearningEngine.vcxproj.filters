@@ -36,6 +36,12 @@
     <ClInclude Include="Source\LE\Events\MouseEvent.h">
       <Filter>LE\Events</Filter>
     </ClInclude>
+    <ClInclude Include="Source\LE\Layer.h">
+      <Filter>LE</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\LayerStack.h">
+      <Filter>LE</Filter>
+    </ClInclude>
     <ClInclude Include="Source\LE\Log.h">
       <Filter>LE</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\LE\Application.cpp">
+      <Filter>LE</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LE\Layer.cpp">
+      <Filter>LE</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LE\LayerStack.cpp">
       <Filter>LE</Filter>
     </ClCompile>
     <ClCompile Include="Source\LE\Log.cpp">

@@ -49,6 +49,11 @@ namespace LE
 			return GetCategoryFlags() & Category;
 		}
 
+		inline bool IsHandled() const
+		{
+			return m_Handled;
+		}
+
 	protected:
 
 		bool m_Handled = false;

@@ -4,6 +4,7 @@
 #include "Core.h"
 #include "Window.h"
 #include "LE/Events/ApplicationEvent.h"
+#include "LayerStack.h"
 
 namespace LE
 {
@@ -18,6 +19,9 @@ namespace LE
 
 		void OnEvent(Event& e);
 
+		void PushLayer(Layer* Layer);
+		void PushOverlay(Layer* Overlay);
+
 	private:
 
 		bool OnWindowCloseCallback(const WindowCloseEvent& e);
@@ -26,6 +30,8 @@ namespace LE
 
 		std::unique_ptr<Window> m_Window;
 		bool bIsRunning = true;
+
+		LayerStack m_LayerStack;
 	};
 
 	// To be defined in CLIENT

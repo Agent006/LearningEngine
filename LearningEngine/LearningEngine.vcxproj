@@ -84,7 +84,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 /MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -111,7 +111,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 /MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -139,7 +139,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 /MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -162,6 +162,8 @@
     <ClInclude Include="Source\LE\Events\Event.h" />
     <ClInclude Include="Source\LE\Events\KeyEvent.h" />
     <ClInclude Include="Source\LE\Events\MouseEvent.h" />
+    <ClInclude Include="Source\LE\Layer.h" />
+    <ClInclude Include="Source\LE\LayerStack.h" />
     <ClInclude Include="Source\LE\Log.h" />
     <ClInclude Include="Source\LE\Window.h" />
     <ClInclude Include="Source\LEpch.h" />
@@ -170,6 +172,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\LE\Application.cpp" />
+    <ClCompile Include="Source\LE\Layer.cpp" />
+    <ClCompile Include="Source\LE\LayerStack.cpp" />
     <ClCompile Include="Source\LE\Log.cpp" />
     <ClCompile Include="Source\LEpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

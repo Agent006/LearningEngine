@@ -70,14 +70,17 @@ project "LearningEngine"
 			"LE_DEBUG",
 			"LE_ENABLE_ASSERTS"
 		}
+		buildoptions "/MDd"
 		symbols "On"
 		
 	filter "configurations:Release"
 		defines "LE_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 		
 	filter "configurations:Distribution"
 		defines "LE_DISTRIBUTION"
+		buildoptions "/MD"
 		optimize "On"
 
 project "Sandbox"
@@ -105,7 +108,7 @@ project "Sandbox"
 	{
 		"LearningEngine"
 	}
-
+	
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"
@@ -118,12 +121,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "LE_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 		
 	filter "configurations:Release"
 		defines "LE_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 		
 	filter "configurations:Distribution"
 		defines "LE_DISTRIBUTION"
+		buildoptions "/MD"
 		optimize "On"
