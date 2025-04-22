@@ -6,10 +6,15 @@
 
 namespace LE
 {
+	Application* Application::s_Instance = nullptr;
+
 	Application::Application()
 	{
+		LE_CORE_ASSERT(s_Instance, "Only one instance of Application can be present!");
+		s_Instance = this;
+
 		m_Window = std::unique_ptr<Window>(Window::Create());
-		m_Window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
+		m_Window->SetEventCallback(LE_BIND(this, &Application::OnEvent));
 	}
 
 	Application::~Application()
@@ -34,11 +39,13 @@ namespace LE
 	void Application::PushLayer(Layer* Layer)
 	{
 		m_LayerStack.PushLayer(Layer);
+		Layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* Overlay)
 	{
 		m_LayerStack.PushOverlay(Overlay);
+		Overlay->OnAttach();
 	}
 
 	void Application::OnEvent(Event& e)

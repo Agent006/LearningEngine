@@ -8,9 +8,16 @@
 
 namespace LE
 {
+
+
 	class LE_API Application
 	{
 	public:
+
+		inline static Application& Get()
+		{
+			return *s_Instance;
+		}
 
 		Application();
 		virtual ~Application();
@@ -22,11 +29,18 @@ namespace LE
 		void PushLayer(Layer* Layer);
 		void PushOverlay(Layer* Overlay);
 
+		inline Window& GetWindow() const
+		{
+			return *m_Window;
+		}
+
 	private:
 
 		bool OnWindowCloseCallback(const WindowCloseEvent& e);
 
 	private:
+
+		static Application* s_Instance;
 
 		std::unique_ptr<Window> m_Window;
 		bool bIsRunning = true;

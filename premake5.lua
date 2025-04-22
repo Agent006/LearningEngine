@@ -14,8 +14,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder
 IncludeDir = {}
 IncludeDir["GLFW"] = "LearningEngine/ThirdParty/GLFW/include"
+IncludeDir["Glad"] = "LearningEngine/ThirdParty/Glad/include"
+IncludeDir["ImGui"] = "LearningEngine/ThirdParty/ImGui"
 
 include "LearningEngine/ThirdParty/GLFW"
+include "LearningEngine/ThirdParty/Glad"
+include "LearningEngine/ThirdParty/ImGui"
 
 project "LearningEngine"
 	location "LearningEngine"
@@ -39,12 +43,16 @@ project "LearningEngine"
 	{
 		"%{prj.name}/Source",
 		"%{prj.name}/ThirdParty/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
+		"ImGui",
 		"opengl32.lib"
 	}
 
@@ -56,7 +64,8 @@ project "LearningEngine"
 		defines
 		{
 			"LE_PLATFORM_WINDOWS",
-			"LE_BUILD_DLL"
+			"LE_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands

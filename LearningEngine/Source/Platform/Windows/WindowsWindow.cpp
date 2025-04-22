@@ -5,6 +5,8 @@
 #include "LE/Events/KeyEvent.h"
 #include "LE/Events/ApplicationEvent.h"
 
+#include <glad/glad.h>
+
 namespace LE
 {
 	static bool s_GLFWInitialized = false;
@@ -50,6 +52,10 @@ namespace LE
 
 		m_Window = glfwCreateWindow(m_Data.Width, m_Data.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+
+		int gladStatus = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		LE_CORE_ASSERT(gladStatus, "Failed to initialize Glad!");
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -78,23 +84,30 @@ namespace LE
 				{
 					case GLFW_PRESS:
 					{
-						KeyPressedEvent keyPressedEvent = KeyPressedEvent(Key, 0);
+						KeyPressedEvent keyPressedEvent = KeyPressedEvent(Key, Scancode, 0);
 						data.EventCallback(keyPressedEvent);
 						break;
 					}
 					case GLFW_RELEASE:
 					{
-						KeyReleasedEvent keyReleasedEvent = KeyReleasedEvent(Key);
+						KeyReleasedEvent keyReleasedEvent = KeyReleasedEvent(Key, Scancode);
 						data.EventCallback(keyReleasedEvent);
 						break;
 					}
 					case GLFW_REPEAT:
 					{
-						KeyPressedEvent keyPressedEvent = KeyPressedEvent(Key, 1);
+						KeyPressedEvent keyPressedEvent = KeyPressedEvent(Key, Scancode, 1);
 						data.EventCallback(keyPressedEvent);
 						break;
 					}
 				}
+			});
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow* Window, unsigned int Codepoint)
+			{
+				WindowData& data = *(static_cast<WindowData*>(glfwGetWindowUserPointer(Window)));
+				KeyTypedEvent keyTypedEvent = KeyTypedEvent(Codepoint);
+				data.EventCallback(keyTypedEvent);
 			});
 
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* Window, int Button, int Action, int Mods)

@@ -4,3 +4,6 @@
 [submodule "LearningEngine/ThirdParty/GLFW"]
 	path = LearningEngine/ThirdParty/GLFW
 	url = https://github.com/glfw/glfw
+[submodule "LearningEngine/ThirdParty/ImGui"]
+	path = LearningEngine/ThirdParty/ImGui
+	url = https://github.com/ocornut/imgui

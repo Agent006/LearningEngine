@@ -28,8 +28,13 @@ namespace LE
 	{
 	public:
 
-		KeyPressedEvent(int32_t KeyCode, int32_t RepeatCount)
-			: KeyEvent(KeyCode), m_RepeatCount(RepeatCount) {}
+		KeyPressedEvent(int32_t KeyCode, int32_t Scancode, int32_t RepeatCount)
+			: KeyEvent(KeyCode), m_Scancode(Scancode), m_RepeatCount(RepeatCount) {}
+
+		inline int32_t GetScancode() const
+		{
+			return m_Scancode;
+		}
 
 		inline int32_t GetRepeatCount() const
 		{
@@ -47,6 +52,7 @@ namespace LE
 
 	private:
 
+		int32_t m_Scancode;
 		int32_t m_RepeatCount;
 	};
 
@@ -54,8 +60,13 @@ namespace LE
 	{
 	public:
 
-		KeyReleasedEvent(int32_t KeyCode)
-			: KeyEvent(KeyCode) {}
+		KeyReleasedEvent(int32_t KeyCode, int32_t Scancode)
+			: KeyEvent(KeyCode), m_Scancode(Scancode) {}
+
+		inline int32_t GetScancode() const
+		{
+			return m_Scancode;
+		}
 
 		virtual std::string ToString() const override
 		{
@@ -65,5 +76,27 @@ namespace LE
 		}
 
 		EVENT_CLASS_TYPE(EventType::KeyReleased);
+
+	private:
+
+		int32_t m_Scancode;
 	};
+
+	class LE_API KeyTypedEvent : public KeyEvent
+	{
+	public:
+
+		KeyTypedEvent(int32_t KeyCode)
+			: KeyEvent(KeyCode) {}
+
+		virtual std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "KeyTypedEvent: " << m_KeyCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(EventType::KeyTyped);
+	};
+
 }
