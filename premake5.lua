@@ -16,6 +16,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "LearningEngine/ThirdParty/GLFW/include"
 IncludeDir["Glad"] = "LearningEngine/ThirdParty/Glad/include"
 IncludeDir["ImGui"] = "LearningEngine/ThirdParty/ImGui"
+IncludeDir["glm"] = "LearningEngine/ThirdParty/glm"
 
 group "Dependencies"
 
@@ -40,7 +41,9 @@ project "LearningEngine"
 	files
 	{
 		"%{prj.name}/Source/**.h", 
-		"%{prj.name}/Source/**.cpp"
+		"%{prj.name}/Source/**.cpp",
+		"%{prj.name}/ThirdParty/glm/glm/**.hpp",
+		"%{prj.name}/ThirdParty/glm/glm/**.inl"
 	}
 
 	includedirs
@@ -49,7 +52,8 @@ project "LearningEngine"
 		"%{prj.name}/ThirdParty/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -112,7 +116,8 @@ project "Sandbox"
 	includedirs
 	{
 		"LearningEngine/ThirdParty/spdlog/include",
-		"LearningEngine/Source"
+		"LearningEngine/Source",
+		"%{IncludeDir.glm}"
 	}
 
 	links

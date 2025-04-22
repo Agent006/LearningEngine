@@ -7,3 +7,6 @@
 [submodule "LearningEngine/ThirdParty/ImGui"]
 	path = LearningEngine/ThirdParty/ImGui
 	url = https://github.com/ocornut/imgui
+[submodule "LearningEngine/ThirdParty/glm"]
+	path = LearningEngine/ThirdParty/glm
+	url = https://github.com/g-truc/glm
