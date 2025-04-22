@@ -17,15 +17,19 @@ IncludeDir["GLFW"] = "LearningEngine/ThirdParty/GLFW/include"
 IncludeDir["Glad"] = "LearningEngine/ThirdParty/Glad/include"
 IncludeDir["ImGui"] = "LearningEngine/ThirdParty/ImGui"
 
-include "LearningEngine/ThirdParty/GLFW"
-include "LearningEngine/ThirdParty/Glad"
-include "LearningEngine/ThirdParty/ImGui"
+group "Dependencies"
+
+	include "LearningEngine/ThirdParty/GLFW"
+	include "LearningEngine/ThirdParty/Glad"
+	include "LearningEngine/ThirdParty/ImGui"
+group ""
 
 project "LearningEngine"
 	location "LearningEngine"
 	kind "SharedLib"
 	language "C++"
 	buildoptions "/utf-8"
+	staticruntime "off"
 
 	targetdir ("Binaries/" .. outputdir .. "/%{prj.name}")
 	objdir ("Intermediate/" .. outputdir .. "/%{prj.name}")
@@ -58,7 +62,6 @@ project "LearningEngine"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -70,26 +73,24 @@ project "LearningEngine"
 
 		postbuildcommands
 		{
-			("{COPYFILE} %{cfg.buildtarget.relpath} ../Binaries/" .. outputdir .. "/Sandbox")
+			--("IF NOT EXISTS ../Binaries/" ..outputdir.. "${prj.name} mkdir ../Binaries/" ..outputdir.. "${prj.name}"),
+			-- TODO: clean build (delete Binaries) fails here, figure out why
+			("{COPYFILE} %{cfg.buildtarget.relpath} \"../Binaries/" .. outputdir .. "/Sandbox/\"")
 		}
 
 	filter "configurations:Debug"
-		defines
-		{
-			"LE_DEBUG",
-			"LE_ENABLE_ASSERTS"
-		}
-		buildoptions "/MDd"
+		defines "LE_DEBUG"
+		runtime "Debug"
 		symbols "On"
 		
 	filter "configurations:Release"
 		defines "LE_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 		
 	filter "configurations:Distribution"
 		defines "LE_DISTRIBUTION"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 project "Sandbox"
@@ -97,6 +98,7 @@ project "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
 	buildoptions "/utf-8"
+	staticruntime "off"
 
 	targetdir ("Binaries/" .. outputdir .. "/%{prj.name}")
 	objdir ("Intermediate/" .. outputdir .. "/%{prj.name}")
@@ -120,7 +122,6 @@ project "Sandbox"
 	
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -130,15 +131,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "LE_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 		
 	filter "configurations:Release"
 		defines "LE_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 		
 	filter "configurations:Distribution"
 		defines "LE_DISTRIBUTION"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"

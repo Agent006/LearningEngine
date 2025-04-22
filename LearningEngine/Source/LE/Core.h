@@ -19,6 +19,10 @@
 
 // ------
 
+#ifdef LE_DEBUG
+	#define LE_ENABLE_ASSERTS
+#endif
+
 #ifdef LE_ENABLE_ASSERTS
 	#define LE_ASSERT(x, ...) { if ((x) == false) { LE_ERROR("Assertion failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define LE_CORE_ASSERT(x, ...) { if ((x) == false) { LE_CORE_ERROR("Assertion failed: {0}", __VA_ARGS__); __debugbreak(); } }

@@ -74,6 +74,8 @@ namespace LE
         dispatcher.Dispatch<WindowResizeEvent>(LE_BIND(this, &ImGuiLayer::OnWindowResizeEvent));
 	}
 
+    // TODO: Abstract this into some Converter class
+    // TODO: make this constexpr
     uint32_t ImGuiLayer::KeyToImGuiKey(int Keycode, int Scancode)
     {
         IM_UNUSED(Scancode);

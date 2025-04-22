@@ -3,6 +3,8 @@
 
 #include "Application.h"
 
+#include "Input.h"
+
 
 namespace LE
 {
@@ -27,6 +29,8 @@ namespace LE
 		while (bIsRunning)
 		{
 			m_Window->OnUpdate();
+
+			LE_CORE_TRACE("{0}, {1}", Input::GetMouseX(), Input::GetMouseY());
 
 			for (Layer* currentLayer : m_LayerStack)
 			{

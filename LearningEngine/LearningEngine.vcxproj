@@ -79,12 +79,12 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>LEpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>LE_PLATFORM_WINDOWS;LE_BUILD_DLL;GLFW_INCLUDE_NONE;LE_DEBUG;LE_ENABLE_ASSERTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>LE_PLATFORM_WINDOWS;LE_BUILD_DLL;GLFW_INCLUDE_NONE;LE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>Source;ThirdParty\spdlog\include;ThirdParty\GLFW\include;ThirdParty\Glad\include;ThirdParty\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalOptions>/utf-8 /MDd %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -95,7 +95,7 @@
       <ImportLibrary>..\Binaries\Debug-windows-x86_64\LearningEngine\LearningEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy /B /Y ..\Binaries\Debug-windows-x86_64\LearningEngine\LearningEngine.dll ..\Binaries\Debug-windows-x86_64\Sandbox</Command>
+      <Command>copy /B /Y ..\Binaries\Debug-windows-x86_64\LearningEngine\LearningEngine.dll "..\Binaries\Debug-windows-x86_64\Sandbox\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -110,8 +110,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalOptions>/utf-8 /MD %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -123,7 +123,7 @@
       <ImportLibrary>..\Binaries\Release-windows-x86_64\LearningEngine\LearningEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy /B /Y ..\Binaries\Release-windows-x86_64\LearningEngine\LearningEngine.dll ..\Binaries\Release-windows-x86_64\Sandbox</Command>
+      <Command>copy /B /Y ..\Binaries\Release-windows-x86_64\LearningEngine\LearningEngine.dll "..\Binaries\Release-windows-x86_64\Sandbox\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Distribution|x64'">
@@ -138,8 +138,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalOptions>/utf-8 /MD %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -151,10 +151,11 @@
       <ImportLibrary>..\Binaries\Distribution-windows-x86_64\LearningEngine\LearningEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy /B /Y ..\Binaries\Distribution-windows-x86_64\LearningEngine\LearningEngine.dll ..\Binaries\Distribution-windows-x86_64\Sandbox</Command>
+      <Command>copy /B /Y ..\Binaries\Distribution-windows-x86_64\LearningEngine\LearningEngine.dll "..\Binaries\Distribution-windows-x86_64\Sandbox\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source\LE\KeyCodes.h" />
     <ClInclude Include="Source\LE\Application.h" />
     <ClInclude Include="Source\LE\Core.h" />
     <ClInclude Include="Source\LE\EntryPoint.h" />
@@ -163,13 +164,16 @@
     <ClInclude Include="Source\LE\Events\KeyEvent.h" />
     <ClInclude Include="Source\LE\Events\MouseEvent.h" />
     <ClInclude Include="Source\LE\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="Source\LE\Input.h" />
     <ClInclude Include="Source\LE\Layer.h" />
     <ClInclude Include="Source\LE\LayerStack.h" />
     <ClInclude Include="Source\LE\Log.h" />
     <ClInclude Include="Source\LE\Window.h" />
     <ClInclude Include="Source\LEpch.h" />
     <ClInclude Include="Source\LearningEngine.h" />
+    <ClInclude Include="Source\LE\MouseButtonCodes.h" />
     <ClInclude Include="Source\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="Source\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="Source\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +186,7 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="Source\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="Source\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>

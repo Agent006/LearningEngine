@@ -36,6 +36,11 @@ namespace LE
 			return m_Data.bIsVSync;
 		}
 
+		inline virtual void* GetNativeWindow() const override
+		{
+			return m_Window;
+		}
+
 	protected:
 
 		virtual void Init(const WindowProps& Props);

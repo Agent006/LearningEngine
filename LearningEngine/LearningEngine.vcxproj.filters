@@ -45,6 +45,9 @@
     <ClInclude Include="Source\LE\ImGui\ImGuiLayer.h">
       <Filter>LE\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="Source\LE\Input.h">
+      <Filter>LE</Filter>
+    </ClInclude>
     <ClInclude Include="Source\LE\Layer.h">
       <Filter>LE</Filter>
     </ClInclude>
@@ -65,6 +68,9 @@
     <ClInclude Include="Source\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="Source\LE\KeyCodes.h" />
+    <ClInclude Include="Source\LE\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\LE\Application.cpp">
@@ -89,5 +95,6 @@
     <ClCompile Include="Source\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>
