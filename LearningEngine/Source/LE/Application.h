@@ -6,6 +6,8 @@
 #include "LE/Events/ApplicationEvent.h"
 #include "LayerStack.h"
 
+#include "LE/ImGui/ImGuiLayer.h"
+
 namespace LE
 {
 
@@ -43,6 +45,8 @@ namespace LE
 		static Application* s_Instance;
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
+
 		bool bIsRunning = true;
 
 		LayerStack m_LayerStack;

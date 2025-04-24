@@ -23,14 +23,16 @@ group "Dependencies"
 	include "LearningEngine/ThirdParty/GLFW"
 	include "LearningEngine/ThirdParty/Glad"
 	include "LearningEngine/ThirdParty/ImGui"
+
 group ""
 
 project "LearningEngine"
 	location "LearningEngine"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 	buildoptions "/utf-8"
-	staticruntime "off"
 
 	targetdir ("Binaries/" .. outputdir .. "/%{prj.name}")
 	objdir ("Intermediate/" .. outputdir .. "/%{prj.name}")
@@ -64,8 +66,12 @@ project "LearningEngine"
 		"opengl32.lib"
 	}
 
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
+	}
+
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 
 		defines
@@ -75,34 +81,28 @@ project "LearningEngine"
 			"GLFW_INCLUDE_NONE"
 		}
 
-		postbuildcommands
-		{
-			--("IF NOT EXISTS ../Binaries/" ..outputdir.. "${prj.name} mkdir ../Binaries/" ..outputdir.. "${prj.name}"),
-			-- TODO: clean build (delete Binaries) fails here, figure out why
-			("{COPYFILE} %{cfg.buildtarget.relpath} \"../Binaries/" .. outputdir .. "/Sandbox/\"")
-		}
-
 	filter "configurations:Debug"
 		defines "LE_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 		
 	filter "configurations:Release"
 		defines "LE_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 		
 	filter "configurations:Distribution"
 		defines "LE_DISTRIBUTION"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 	buildoptions "/utf-8"
-	staticruntime "off"
 
 	targetdir ("Binaries/" .. outputdir .. "/%{prj.name}")
 	objdir ("Intermediate/" .. outputdir .. "/%{prj.name}")
@@ -126,7 +126,7 @@ project "Sandbox"
 	}
 	
 	filter "system:windows"
-		cppdialect "C++17"
+
 		systemversion "latest"
 
 		defines
@@ -137,14 +137,14 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "LE_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 		
 	filter "configurations:Release"
 		defines "LE_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 		
 	filter "configurations:Distribution"
 		defines "LE_DISTRIBUTION"
 		runtime "Release"
-		optimize "On"
+		optimize "on"

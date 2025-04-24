@@ -4,11 +4,15 @@
 // ------
 
 #ifdef LE_PLATFORM_WINDOWS
+#if LE_DYNAMIC_LINK
 	#ifdef LE_BUILD_DLL
 		#define LE_API __declspec(dllexport)
 	#else
 		#define LE_API __declspec(dllimport)
 	#endif
+#else
+	#define LE_API
+#endif
 #else
 	#error Learning Engine only supports Windows!
 #endif
@@ -26,11 +30,9 @@
 #ifdef LE_ENABLE_ASSERTS
 	#define LE_ASSERT(x, ...) { if ((x) == false) { LE_ERROR("Assertion failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define LE_CORE_ASSERT(x, ...) { if ((x) == false) { LE_CORE_ERROR("Assertion failed: {0}", __VA_ARGS__); __debugbreak(); } }
-	#define LE_CORE_ASSERT(x) { if ((x) == false) { __debugbreak; } }
 #else
 	#define LE_ASSERT(x, ...)
 	#define LE_CORE_ASSERT(x, ...)
-	#define LE_CORE_ASSERT(x)
 #endif
 
 // ------

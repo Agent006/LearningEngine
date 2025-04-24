@@ -14,7 +14,7 @@ namespace LE
 	static void GLFWErrorCallback(int ErrorCode, const char* Msg)
 	{
 		LE_CORE_ERROR("GLFW Error ({0}): {1}", ErrorCode, Msg);
-		LE_CORE_ASSERT(false);
+		LE_CORE_ASSERT(false, "");
 	}
 
 	Window* Window::Create(const WindowProps& Props)

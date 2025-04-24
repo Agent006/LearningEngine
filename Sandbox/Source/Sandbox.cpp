@@ -7,7 +7,6 @@ public:
 
 	Sandbox()
 	{
-		PushOverlay(new LE::ImGuiLayer());
 	}
 };
 

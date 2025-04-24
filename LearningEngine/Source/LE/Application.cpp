@@ -12,11 +12,14 @@ namespace LE
 
 	Application::Application()
 	{
-		LE_CORE_ASSERT(s_Instance, "Only one instance of Application can be present!");
+		LE_CORE_ASSERT(!s_Instance, "Only one instance of Application can be present!");
 		s_Instance = this;
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(LE_BIND(this, &Application::OnEvent));
+
+		m_ImGuiLayer = new ImGuiLayer();
+		PushOverlay(m_ImGuiLayer);
 	}
 
 	Application::~Application()
@@ -28,15 +31,19 @@ namespace LE
 	{
 		while (bIsRunning)
 		{
-			m_Window->OnUpdate();
-
-			LE_CORE_TRACE("{0}, {1}", Input::GetMouseX(), Input::GetMouseY());
-
 			for (Layer* currentLayer : m_LayerStack)
 			{
 				currentLayer->OnUpdate();
 			}
 
+			m_ImGuiLayer->Begin();
+			for (Layer* currentLayer : m_LayerStack)
+			{
+				currentLayer->OnImGuiRender();
+			}
+			m_ImGuiLayer->End();
+
+			m_Window->OnUpdate();
 		}
 	}
 
