@@ -3,6 +3,8 @@
 
 #include <glad/glad.h>
 
+#include <glm/gtc/type_ptr.hpp>
+
 namespace LE
 {
 	OpenGLShader::OpenGLShader(const std::string& VertexShader, const std::string& FragmentShader)
@@ -124,5 +126,11 @@ namespace LE
 	void OpenGLShader::Unbind() const
 	{
 		glUseProgram(0);
+	}
+
+	void OpenGLShader::UploadUniformMat4(const std::string& Name, const glm::mat4& Matrix) const
+	{
+		int32_t pos = glGetUniformLocation(m_RendererId, Name.c_str());
+		glUniformMatrix4fv(pos, 1, GL_FALSE, glm::value_ptr(Matrix));
 	}
 }
