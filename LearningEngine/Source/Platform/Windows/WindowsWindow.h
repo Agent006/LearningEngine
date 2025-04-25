@@ -2,6 +2,7 @@
 #pragma once
 
 #include "LE/Window.h"
+#include "LE/Renderer/GraphicsContext.h"
 #include <GLFW/glfw3.h>
 
 namespace LE
@@ -49,6 +50,7 @@ namespace LE
 	private:
 
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{

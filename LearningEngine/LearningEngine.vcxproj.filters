@@ -1353,6 +1353,12 @@
     <ClInclude Include="ThirdParty\glm\glm\vector_relational.hpp">
       <Filter>ThirdParty\glm\glm</Filter>
     </ClInclude>
+    <ClInclude Include="Source\LE\Renderer\GraphicsContext.h" />
+    <ClInclude Include="Source\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="Source\LE\Renderer\Shader.h" />
+    <ClInclude Include="Source\LE\Renderer\Buffers.h" />
+    <ClInclude Include="Source\Platform\OpenGL\OpenGLBuffers.h" />
+    <ClInclude Include="Source\LE\Renderer\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\LE\Application.cpp">
@@ -1382,5 +1388,10 @@
     <ClCompile Include="Source\Platform\Windows\WindowsWindow.cpp">
       <Filter>Source\Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="Source\LE\Renderer\Shader.cpp" />
+    <ClCompile Include="Source\LE\Renderer\Buffers.cpp" />
+    <ClCompile Include="Source\Platform\OpenGL\OpenGLBuffers.cpp" />
+    <ClCompile Include="Source\LE\Renderer\Renderer.cpp" />
   </ItemGroup>
 </Project>

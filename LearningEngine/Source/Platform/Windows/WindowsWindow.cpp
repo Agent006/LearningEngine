@@ -5,7 +5,7 @@
 #include "LE/Events/KeyEvent.h"
 #include "LE/Events/ApplicationEvent.h"
 
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace LE
 {
@@ -51,10 +51,9 @@ namespace LE
 		}
 
 		m_Window = glfwCreateWindow(m_Data.Width, m_Data.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
 
-		int gladStatus = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		LE_CORE_ASSERT(gladStatus, "Failed to initialize Glad!");
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
@@ -160,7 +159,7 @@ namespace LE
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 	
 	void WindowsWindow::SetVSync(bool bEnabled)
