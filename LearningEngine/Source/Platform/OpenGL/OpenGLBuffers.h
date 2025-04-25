@@ -14,9 +14,20 @@ namespace LE
 		virtual void Bind() const override;
 		virtual void Unbind() const override;
 
+		virtual inline const VertexBufferLayout& GetBufferLayout() const override
+		{
+			return m_Layout;
+		}
+
+		virtual void SetLayout(const VertexBufferLayout& Layout) override
+		{
+			m_Layout = Layout;
+		}
+
 	private:
 
 		uint32_t m_RendererId;
+		VertexBufferLayout m_Layout;
 	};
 
 	class OpenGLIndexBuffer : public IndexBuffer

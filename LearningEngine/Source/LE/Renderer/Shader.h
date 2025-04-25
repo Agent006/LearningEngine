@@ -8,14 +8,11 @@ namespace LE
 	{
 	public:
 
-		Shader(const std::string& VertexShader, const std::string& FragmentShader);
-		~Shader();
+		virtual ~Shader() {}
 
-		void Bind() const;
-		void Unbind() const;
+		virtual void Bind() const = 0;
+		virtual void Unbind() const = 0;
 
-	private:
-
-		uint32_t m_RendererId;
+		static Shader* Create(const std::string& VertexShader, const std::string& FragmentShader);
 	};
 }

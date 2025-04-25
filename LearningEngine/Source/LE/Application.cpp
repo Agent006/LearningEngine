@@ -5,10 +5,12 @@
 
 #include "Input.h"
 
-#include <glad/glad.h>
+#include "LE/Renderer/Renderer.h"
 
 #include "LE/Renderer/Shader.h"
 #include "LE/Renderer/Buffers.h"
+#include "LE/Renderer/VertexArray.h"
+#include "LE/Renderer/VertexBufferLayout.h"
 
 namespace LE
 {
@@ -36,12 +38,15 @@ namespace LE
 		std::string vertexShader = R"(
 			#version 330 core
 			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec4 a_Color;
 			
 			out vec3 v_Position;
+			out vec4 v_Color;
 			
 			void main()
 			{
 				v_Position = a_Position;
+				v_Color = a_Color;
 				gl_Position = vec4(a_Position, 1.f);
 			}
 		)";
@@ -51,46 +56,58 @@ namespace LE
 			layout(location = 0) out vec4 color;
 		
 			in vec3 v_Position;
+			in vec4 v_Color;
 
 			void main()
 			{
-				color = vec4(v_Position * 0.5 + 0.5, 1.0);
+				color = v_Color;
 			}
 		)";
 
-		Shader testShader = Shader(vertexShader, fragmentShader);
-		testShader.Bind();
+		Shader* testShader = Shader::Create(vertexShader, fragmentShader);
+		testShader->Bind();
 
-		unsigned int vaIndex;
-		glGenVertexArrays(1, &vaIndex);
-		glBindVertexArray(vaIndex);
+		std::shared_ptr<VertexArray> vertexArray;
+		vertexArray.reset(VertexArray::Create());
 
-		float vb[3*3] =
+		float vb[7*3] =
 		{
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.f,   0.5f, 0.0f
+			-0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+			 0.0f,  0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f
 		};
 
+		std::shared_ptr<VertexBuffer> vertexBuffer; 
+		vertexBuffer.reset(VertexBuffer::Create(vb, sizeof(vb)));
+
+		VertexBufferLayout layout = {
+			{ ShaderDataType::Float3, "a_Position", false },			
+			{ ShaderDataType::Float4, "a_Color", false }
+		};
+
+		vertexBuffer->SetLayout(layout);
+		vertexArray->AddVertexBuffer(vertexBuffer);
+
 		uint32_t ib[3] = { 0, 1, 2 };
-
-		VertexBuffer* vertexBuffer = VertexBuffer::Create(vb, sizeof(vb));
-		IndexBuffer* indexBuffer = IndexBuffer::Create(ib, 3);
-
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+		std::shared_ptr<IndexBuffer> indexBuffer;
+		indexBuffer.reset(IndexBuffer::Create(ib, 3));
+		vertexArray->SetIndexBuffer(indexBuffer);
 
 		while (bIsRunning)
 		{
-			glClearColor(0.1f, 0.1f, 0.1f, 1.f);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.f });
+			RenderCommand::Clear();
+			Renderer::BeginScene();
+
+			testShader->Bind();
+			Renderer::Submit(vertexArray);
+
+			Renderer::EndScene();
 
 			for (Layer* currentLayer : m_LayerStack)
 			{
 				currentLayer->OnUpdate();
 			}
-
-			glDrawElements(GL_TRIANGLES, indexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			m_ImGuiLayer->Begin();
 			for (Layer* currentLayer : m_LayerStack)
