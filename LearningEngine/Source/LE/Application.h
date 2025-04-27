@@ -12,8 +12,6 @@
 
 namespace LE
 {
-
-
 	class LE_API Application
 	{
 	public:
@@ -28,7 +26,7 @@ namespace LE
 
 		void Run();
 
-		void OnEvent(Event& e);
+		virtual void OnEvent(Event& e);
 
 		void PushLayer(Layer* Layer);
 		void PushOverlay(Layer* Overlay);
@@ -37,6 +35,10 @@ namespace LE
 		{
 			return *m_Window;
 		}
+
+	protected:
+
+		virtual void Tick(float DeltaTime) { }
 
 	private:
 
@@ -48,8 +50,6 @@ namespace LE
 
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
-
-		OrthographicCamera Camera;
 
 		bool bIsRunning = true;
 

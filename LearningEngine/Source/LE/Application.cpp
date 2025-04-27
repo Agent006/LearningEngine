@@ -16,7 +16,6 @@ namespace LE
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application()
-		: Camera(-1.f, 1.f, -1.f, 1.f)
 	{
 		LE_CORE_ASSERT(!s_Instance, "Only one instance of Application can be present!");
 		s_Instance = this;
@@ -35,77 +34,9 @@ namespace LE
 
 	void Application::Run()
 	{
-		std::string vertexShader = R"(
-			#version 330 core
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec4 a_Color;
-			
-			uniform mat4 u_ViewProjection;
-
-			out vec3 v_Position;
-			out vec4 v_Color;
-			
-			void main()
-			{
-				v_Position = a_Position;
-				v_Color = a_Color;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.f);
-			}
-		)";
-
-		std::string fragmentShader = R"(
-			#version 330 core
-			layout(location = 0) out vec4 color;
-		
-			in vec3 v_Position;
-			in vec4 v_Color;
-
-			void main()
-			{
-				color = v_Color;
-			}
-		)";
-
-		std::shared_ptr<Shader> testShader;
-		testShader.reset(Shader::Create(vertexShader, fragmentShader));
-		testShader->Bind();
-
-		std::shared_ptr<VertexArray> vertexArray;
-		vertexArray.reset(VertexArray::Create());
-
-		float vb[7*3] =
-		{
-			-0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
-			 0.0f,  0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f
-		};
-		
-		std::shared_ptr<VertexBuffer> vertexBuffer; 
-		vertexBuffer.reset(VertexBuffer::Create(vb, sizeof(vb)));
-
-		VertexBufferLayout layout = {
-			{ ShaderDataType::Float3, "a_Position", false },			
-			{ ShaderDataType::Float4, "a_Color", false }
-		};
-
-		vertexBuffer->SetLayout(layout);
-		vertexArray->AddVertexBuffer(vertexBuffer);
-
-		uint32_t ib[3] = { 0, 1, 2 };
-		std::shared_ptr<IndexBuffer> indexBuffer;
-		indexBuffer.reset(IndexBuffer::Create(ib, 3));
-		vertexArray->SetIndexBuffer(indexBuffer);
-
 		while (bIsRunning)
 		{
-			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.f });
-			RenderCommand::Clear();
-
-			Renderer::BeginScene(Camera);
-
-			Renderer::Submit(testShader, vertexArray);
-
-			Renderer::EndScene();
+			Tick(0.f);
 
 			for (Layer* currentLayer : m_LayerStack)
 			{

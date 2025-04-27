@@ -6,6 +6,7 @@
 #include "VertexArray.h"
 
 #include "LE/Renderer/OrthographicCamera.h"
+#include "LE/Renderer/RenderingObject.h"
 
 #include "Shader.h"
 
@@ -21,6 +22,7 @@ namespace LE
 		static void EndScene();
 
 		static void Submit(const std::shared_ptr<Shader>& Shader, const std::shared_ptr<VertexArray>& VertexArray);
+		static void SubmitObj(const std::shared_ptr<RenderingObject>& RenderingObject);
 
 		inline static RendererAPI::API GetAPI()
 		{

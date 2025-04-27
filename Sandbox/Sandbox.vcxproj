@@ -137,12 +137,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\RenderingObjects\Fruit.cpp" />
+    <ClCompile Include="Source\RenderingObjects\SnakeHead.cpp" />
+    <ClCompile Include="Source\RenderingObjects\SnakePart.cpp" />
     <ClCompile Include="Source\Sandbox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LearningEngine\LearningEngine.vcxproj">
       <Project>{2B51F68C-171F-EA92-00B3-5AB9EC1FC6F7}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\RenderingObjects\Fruit.h" />
+    <ClInclude Include="Source\RenderingObjects\SnakeHead.h" />
+    <ClInclude Include="Source\RenderingObjects\SnakePart.h" />
+    <ClInclude Include="Source\Sandbox.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

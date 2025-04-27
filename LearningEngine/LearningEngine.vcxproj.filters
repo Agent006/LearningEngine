@@ -1367,6 +1367,7 @@
     <ClInclude Include="Source\LE\Renderer\RenderCommand.h" />
     <ClInclude Include="Source\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="Source\LE\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="Source\LE\Renderer\RenderingObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\LE\Application.cpp">

@@ -24,4 +24,15 @@ namespace LE
 		VertexArray->Bind();
 		RenderCommand::DrawIndexed(VertexArray);
 	}
+
+	void Renderer::SubmitObj(const std::shared_ptr<RenderingObject>& RenderingObject)
+	{
+		RenderingObject->GetRenderingObjectData().Shader->Bind();
+		RenderingObject->GetRenderingObjectData().Shader->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+		RenderingObject->GetRenderingObjectData().Shader->UploadUniformMat4("u_Model", RenderingObject->GetRenderingObjectData().ModelMatrix);
+
+		RenderingObject->GetRenderingObjectData().VertexArray->Bind();
+		RenderCommand::DrawIndexed(RenderingObject->GetRenderingObjectData().VertexArray);
+	}
+
 }
