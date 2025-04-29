@@ -8,12 +8,8 @@
 
 #include "LE/ImGui/ImGuiLayer.h"
 
-#include "LE/Renderer/OrthographicCamera.h"
-
 namespace LE
 {
-
-
 	class LE_API Application
 	{
 	public:
@@ -48,8 +44,6 @@ namespace LE
 
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
-
-		OrthographicCamera Camera;
 
 		bool bIsRunning = true;
 

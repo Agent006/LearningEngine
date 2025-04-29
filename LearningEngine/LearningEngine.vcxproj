@@ -605,9 +605,6 @@
     <ClCompile Include="Source\LE\Layer.cpp" />
     <ClCompile Include="Source\LE\LayerStack.cpp" />
     <ClCompile Include="Source\LE\Log.cpp" />
-    <ClCompile Include="Source\LEpch.cpp">
-      <PrecompiledHeader>Create</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="Source\LE\Renderer\Buffers.cpp" />
     <ClCompile Include="Source\LE\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="Source\LE\Renderer\RenderCommand.cpp" />
@@ -616,6 +613,9 @@
     <ClCompile Include="Source\LE\Renderer\Shader.cpp" />
     <ClCompile Include="Source\LE\Renderer\VertexArray.cpp" />
     <ClCompile Include="Source\LE\Renderer\VertexBufferLayout.cpp" />
+    <ClCompile Include="Source\LEpch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Source\Platform\OpenGL\OpenGLBuffers.cpp" />
     <ClCompile Include="Source\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="Source\Platform\OpenGL\OpenGLRendererAPI.cpp" />

@@ -13,6 +13,17 @@
 
 #include "LE/ImGui/ImGuiLayer.h"
 
-/* Entry Point */
+// --Rendering------------------
+#include "LE/Renderer/Renderer.h"
+#include "LE/Renderer/RenderCommand.h"
+
+#include "LE/Renderer/Buffers.h"
+#include "LE/Renderer/Shader.h"
+#include "LE/Renderer/VertexArray.h"
+
+#include "LE/Renderer/OrthographicCamera.h"
+// ------------------------------
+
+// --EntryPoint------------------
 #include "LE/EntryPoint.h"
-/*------------------------*/
+// ------------------------------

@@ -13,8 +13,14 @@
     <Filter Include="Source\LE\ImGui">
       <UniqueIdentifier>{40D3D930-AC5E-47F5-B56F-CAE9217AA3F5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\LE\Renderer">
+      <UniqueIdentifier>{FCF153E2-E8D5-1438-5136-0F8B3D39FFB9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source\Platform">
       <UniqueIdentifier>{6A48A913-D6D3-16D8-DFE4-99CC4BEF72D8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Platform\OpenGL">
+      <UniqueIdentifier>{5E160775-4A10-30C7-337D-C6D71F169633}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\Platform\Windows">
       <UniqueIdentifier>{A4BC056E-10F4-4D05-19FE-B12885B474FE}</UniqueIdentifier>
@@ -84,6 +90,33 @@
     <ClInclude Include="Source\LE\MouseButtonCodes.h">
       <Filter>Source\LE</Filter>
     </ClInclude>
+    <ClInclude Include="Source\LE\Renderer\Buffers.h">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Renderer\GraphicsContext.h">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Renderer\OrthographicCamera.h">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Renderer\RenderCommand.h">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Renderer\Renderer.h">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Renderer\RendererAPI.h">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Renderer\Shader.h">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Renderer\VertexArray.h">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Renderer\VertexBufferLayout.h">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="Source\LE\Window.h">
       <Filter>Source\LE</Filter>
     </ClInclude>
@@ -92,6 +125,21 @@
     </ClInclude>
     <ClInclude Include="Source\LearningEngine.h">
       <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Platform\OpenGL\OpenGLBuffers.h">
+      <Filter>Source\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Platform\OpenGL\OpenGLContext.h">
+      <Filter>Source\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>Source\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Platform\OpenGL\OpenGLShader.h">
+      <Filter>Source\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Platform\OpenGL\OpenGLVertexArray.h">
+      <Filter>Source\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="Source\Platform\Windows\WindowsInput.h">
       <Filter>Source\Platform\Windows</Filter>
@@ -1353,20 +1401,6 @@
     <ClInclude Include="ThirdParty\glm\glm\vector_relational.hpp">
       <Filter>ThirdParty\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="Source\LE\Renderer\GraphicsContext.h" />
-    <ClInclude Include="Source\Platform\OpenGL\OpenGLContext.h" />
-    <ClInclude Include="Source\LE\Renderer\Shader.h" />
-    <ClInclude Include="Source\LE\Renderer\Buffers.h" />
-    <ClInclude Include="Source\Platform\OpenGL\OpenGLBuffers.h" />
-    <ClInclude Include="Source\LE\Renderer\Renderer.h" />
-    <ClInclude Include="Source\Platform\OpenGL\OpenGLShader.h" />
-    <ClInclude Include="Source\LE\Renderer\VertexBufferLayout.h" />
-    <ClInclude Include="Source\LE\Renderer\VertexArray.h" />
-    <ClInclude Include="Source\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="Source\LE\Renderer\RendererAPI.h" />
-    <ClInclude Include="Source\LE\Renderer\RenderCommand.h" />
-    <ClInclude Include="Source\Platform\OpenGL\OpenGLRendererAPI.h" />
-    <ClInclude Include="Source\LE\Renderer\OrthographicCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\LE\Application.cpp">
@@ -1387,8 +1421,47 @@
     <ClCompile Include="Source\LE\Log.cpp">
       <Filter>Source\LE</Filter>
     </ClCompile>
+    <ClCompile Include="Source\LE\Renderer\Buffers.cpp">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LE\Renderer\OrthographicCamera.cpp">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LE\Renderer\RenderCommand.cpp">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LE\Renderer\Renderer.cpp">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LE\Renderer\RendererAPI.cpp">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LE\Renderer\Shader.cpp">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LE\Renderer\VertexArray.cpp">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LE\Renderer\VertexBufferLayout.cpp">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="Source\LEpch.cpp">
       <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\OpenGL\OpenGLBuffers.cpp">
+      <Filter>Source\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>Source\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>Source\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>Source\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>Source\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="Source\Platform\Windows\WindowsInput.cpp">
       <Filter>Source\Platform\Windows</Filter>
@@ -1396,18 +1469,5 @@
     <ClCompile Include="Source\Platform\Windows\WindowsWindow.cpp">
       <Filter>Source\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Platform\OpenGL\OpenGLContext.cpp" />
-    <ClCompile Include="Source\LE\Renderer\Shader.cpp" />
-    <ClCompile Include="Source\LE\Renderer\Buffers.cpp" />
-    <ClCompile Include="Source\Platform\OpenGL\OpenGLBuffers.cpp" />
-    <ClCompile Include="Source\LE\Renderer\Renderer.cpp" />
-    <ClCompile Include="Source\Platform\OpenGL\OpenGLShader.cpp" />
-    <ClCompile Include="Source\LE\Renderer\VertexBufferLayout.cpp" />
-    <ClCompile Include="Source\LE\Renderer\VertexArray.cpp" />
-    <ClCompile Include="Source\Platform\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="Source\LE\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="Source\LE\Renderer\RenderCommand.cpp" />
-    <ClCompile Include="Source\Platform\OpenGL\OpenGLRendererAPI.cpp" />
-    <ClCompile Include="Source\LE\Renderer\OrthographicCamera.cpp" />
   </ItemGroup>
 </Project>
