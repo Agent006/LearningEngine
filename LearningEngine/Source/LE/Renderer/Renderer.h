@@ -20,7 +20,7 @@ namespace LE
 		static void BeginScene(OrthographicCamera& Camera);
 		static void EndScene();
 
-		static void Submit(const std::shared_ptr<Shader>& Shader, const std::shared_ptr<VertexArray>& VertexArray);
+		static void Submit(const std::shared_ptr<Shader>& Shader, const std::shared_ptr<VertexArray>& VertexArray, const glm::mat4& Transform);
 
 		inline static RendererAPI::API GetAPI()
 		{

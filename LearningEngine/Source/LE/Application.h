@@ -48,6 +48,8 @@ namespace LE
 		bool bIsRunning = true;
 
 		LayerStack m_LayerStack;
+
+		float m_LastFrameTime = 0.f;
 	};
 
 	// To be defined in CLIENT

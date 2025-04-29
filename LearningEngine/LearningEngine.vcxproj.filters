@@ -7,6 +7,9 @@
     <Filter Include="Source\LE">
       <UniqueIdentifier>{96058266-0270-36DD-4BAE-E782B7571432}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\LE\Core">
+      <UniqueIdentifier>{AE17ECD2-9AE5-DFD8-8379-50FF6FE6BB3D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source\LE\Events">
       <UniqueIdentifier>{BACC7243-A6C5-9195-CFF7-761ABB4F71A1}</UniqueIdentifier>
     </Filter>
@@ -53,6 +56,9 @@
     </ClInclude>
     <ClInclude Include="Source\LE\Core.h">
       <Filter>Source\LE</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Core\Timestep.h">
+      <Filter>Source\LE\Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\LE\EntryPoint.h">
       <Filter>Source\LE</Filter>

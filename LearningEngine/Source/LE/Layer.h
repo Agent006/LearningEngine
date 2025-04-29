@@ -3,6 +3,7 @@
 
 #include "LE/Core.h"
 #include "LE/Events/Event.h"
+#include "LE/Core/Timestep.h"
 
 namespace LE
 {
@@ -15,7 +16,7 @@ namespace LE
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep DeltaTime) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& e) {}
 

@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="Source\LE\Application.h" />
     <ClInclude Include="Source\LE\Core.h" />
+    <ClInclude Include="Source\LE\Core\Timestep.h" />
     <ClInclude Include="Source\LE\EntryPoint.h" />
     <ClInclude Include="Source\LE\Events\ApplicationEvent.h" />
     <ClInclude Include="Source\LE\Events\Event.h" />

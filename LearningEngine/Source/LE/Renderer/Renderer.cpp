@@ -1,6 +1,8 @@
 #include "LEpch.h"
 #include "Renderer.h"
 
+// TEMP:
+#include "Platform/OpenGL/OpenGLShader.h"
 
 namespace LE
 {
@@ -16,10 +18,11 @@ namespace LE
 
 	}
 
-	void Renderer::Submit(const std::shared_ptr<Shader>& Shader, const std::shared_ptr<VertexArray>& VertexArray)
+	void Renderer::Submit(const std::shared_ptr<Shader>& Shader, const std::shared_ptr<VertexArray>& VertexArray, const glm::mat4& Transform)
 	{
 		Shader->Bind();
-		Shader->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+		std::dynamic_pointer_cast<OpenGLShader>(Shader)->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+		std::dynamic_pointer_cast<OpenGLShader>(Shader)->UploadUniformMat4("u_Transform", Transform);
 
 		VertexArray->Bind();
 		RenderCommand::DrawIndexed(VertexArray);

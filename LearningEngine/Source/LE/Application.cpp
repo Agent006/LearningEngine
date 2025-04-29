@@ -4,6 +4,11 @@
 #include "Application.h"
 #include "Input.h"
 
+#include "LE/Core/Timestep.h"
+
+// TEMP:
+#include <GLFW/glfw3.h>
+
 namespace LE
 {
 	Application* Application::s_Instance = nullptr;
@@ -29,9 +34,14 @@ namespace LE
 	{
 		while (bIsRunning)
 		{
+			// TODO: move glfw call to Platform::GetTime()
+			float time = static_cast<float>(glfwGetTime());
+			Timestep timestep = time - m_LastFrameTime;
+			m_LastFrameTime = time;
+
 			for (Layer* currentLayer : m_LayerStack)
 			{
-				currentLayer->OnUpdate();
+				currentLayer->OnUpdate(timestep);
 			}
 
 			m_ImGuiLayer->Begin();

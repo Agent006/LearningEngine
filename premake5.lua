@@ -117,6 +117,7 @@ project "Sandbox"
 	{
 		"LearningEngine/ThirdParty/spdlog/include",
 		"LearningEngine/Source",
+		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}"
 	}
 

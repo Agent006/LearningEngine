@@ -7,10 +7,13 @@
 #include "LE/Layer.h"
 #include "LE/Log.h"
 
+#include "LE/Core/Timestep.h"
+
 #include "LE/Input.h"
 #include "LE/KeyCodes.h"
 #include "LE/MouseButtonCodes.h"
 
+#include "imgui.h"
 #include "LE/ImGui/ImGuiLayer.h"
 
 // --Rendering------------------
