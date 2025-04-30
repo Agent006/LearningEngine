@@ -4,6 +4,8 @@
 #include "Application.h"
 #include "Input.h"
 
+#include "LE/Renderer/Renderer.h"
+
 #include "LE/Core/Timestep.h"
 
 // TEMP:
@@ -20,6 +22,8 @@ namespace LE
 
 		m_Window = TUniquePtr<Window>(Window::Create());
 		m_Window->SetEventCallback(LE_BIND(this, &Application::OnEvent));
+
+		Renderer::Init();
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);

@@ -17,6 +17,7 @@ IncludeDir["GLFW"] = "LearningEngine/ThirdParty/GLFW/include"
 IncludeDir["Glad"] = "LearningEngine/ThirdParty/Glad/include"
 IncludeDir["ImGui"] = "LearningEngine/ThirdParty/ImGui"
 IncludeDir["glm"] = "LearningEngine/ThirdParty/glm"
+IncludeDir["stb_image"] = "LearningEngine/ThirdParty/stb_image"
 
 group "Dependencies"
 
@@ -44,6 +45,8 @@ project "LearningEngine"
 	{
 		"%{prj.name}/Source/**.h", 
 		"%{prj.name}/Source/**.cpp",
+		"%{prj.name}/ThirdParty/stb_image/**.h",
+		"%{prj.name}/ThirdParty/stb_image/**.cpp",
 		"%{prj.name}/ThirdParty/glm/glm/**.hpp",
 		"%{prj.name}/ThirdParty/glm/glm/**.inl"
 	}
@@ -55,7 +58,8 @@ project "LearningEngine"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links

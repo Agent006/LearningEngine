@@ -10,6 +10,11 @@ namespace LE
 	{
 	public:
 
+		inline static void Init()
+		{
+			s_RenderAPI->Init();
+		}
+
 		inline static void SetClearColor(const glm::vec4& Color)
 		{
 			s_RenderAPI->SetClearColor(Color);

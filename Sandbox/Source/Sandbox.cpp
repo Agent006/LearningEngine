@@ -11,23 +11,20 @@ class ExampleLayer : public LE::Layer
 public:
 
 	ExampleLayer()
-		: LE::Layer("Layer"), m_Camera(-1.6f, 1.6f, -1.2f, 1.2f)
+		: LE::Layer("Layer"), m_Camera(-2.56f, 2.56f, -1.44f, 1.44f)
 	{
 		std::string vertexShader = R"(
 			#version 330 core
 			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec4 a_Color;
 			
 			uniform mat4 u_ViewProjection;
 			uniform mat4 u_Transform;
 
 			out vec3 v_Position;
-			out vec4 v_Color;
 			
 			void main()
 			{
 				v_Position = a_Position;
-				v_Color = a_Color;
 				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.f);
 			}
 		)";
@@ -37,7 +34,6 @@ public:
 			layout(location = 0) out vec4 color;
 		
 			in vec3 v_Position;
-			in vec4 v_Color;
 
 			uniform vec3 u_Color;
 
@@ -48,16 +44,22 @@ public:
 		)";
 
 		m_Shader.reset(LE::Shader::Create(vertexShader, fragmentShader));
-		m_Shader->Bind();
+		m_TextureShader.reset(LE::Shader::Create("Assets/Shaders/Texture.glsl"));
+
+		std::dynamic_pointer_cast<LE::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+
+		m_Texture = LE::Texture2D::Create("Assets/Textures/Checkerboard.png");
+		m_ChernoLogoTexture = LE::Texture2D::Create("Assets/Textures/ChernoLogo.png");
+		std::dynamic_pointer_cast<LE::OpenGLShader>(m_TextureShader)->Bind();
 
 		m_VertexArray.reset(LE::VertexArray::Create());
 
-		float vb[7 * 4] =
+		float vb[5 * 4] =
 		{
-			-0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
-			 0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f,
-			-0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
 		LE::TSharedPtr<LE::VertexBuffer> vertexBuffer;
@@ -65,7 +67,7 @@ public:
 
 		LE::VertexBufferLayout layout = {
 			{ LE::ShaderDataType::Float3, "a_Position", false },
-			{ LE::ShaderDataType::Float4, "a_Color", false }
+			{ LE::ShaderDataType::Float2, "a_TexCoord", false }
 		};
 
 		vertexBuffer->SetLayout(layout);
@@ -99,6 +101,7 @@ public:
 
 		LE::Renderer::BeginScene(m_Camera);
 
+		std::dynamic_pointer_cast<LE::OpenGLShader>(m_Shader)->Bind();
 		std::dynamic_pointer_cast<LE::OpenGLShader>(m_Shader)->UploadUniformFloat3("u_Color", m_SquareColor);
 
 		for (int32_t i = 0; i < 20; i++)
@@ -109,6 +112,12 @@ public:
 				LE::Renderer::Submit(m_Shader, m_VertexArray, transform);
 			}
 		}
+
+		m_Texture->Bind(0);
+		LE::Renderer::Submit(m_TextureShader, m_VertexArray, glm::scale(glm::mat4(1.f), glm::vec3(1.5f)));
+
+		m_ChernoLogoTexture->Bind(0);
+		LE::Renderer::Submit(m_TextureShader, m_VertexArray, glm::scale(glm::mat4(1.f), glm::vec3(1.5f)));
 
 		LE::Renderer::EndScene();
 	}
@@ -127,7 +136,8 @@ public:
 
 private:
 
-	LE::TSharedPtr<LE::Shader> m_Shader;
+	LE::TSharedPtr<LE::Shader> m_Shader, m_TextureShader;
+	LE::TSharedPtr<LE::Texture> m_Texture, m_ChernoLogoTexture;
 	LE::TSharedPtr<LE::VertexArray> m_VertexArray;
 
 	LE::OrthographicCamera m_Camera;

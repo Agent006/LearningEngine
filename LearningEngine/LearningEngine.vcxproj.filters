@@ -49,6 +49,9 @@
     <Filter Include="ThirdParty\glm\glm\gtx">
       <UniqueIdentifier>{9097D540-7C91-FE92-65FE-94A3519764FF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty\stb_image">
+      <UniqueIdentifier>{AAB50CD2-9644-969B-3F63-AA962BD1A641}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\LE\Application.h">
@@ -117,6 +120,9 @@
     <ClInclude Include="Source\LE\Renderer\Shader.h">
       <Filter>Source\LE\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Source\LE\Renderer\Texture.h">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="Source\LE\Renderer\VertexArray.h">
       <Filter>Source\LE\Renderer</Filter>
     </ClInclude>
@@ -142,6 +148,9 @@
       <Filter>Source\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="Source\Platform\OpenGL\OpenGLShader.h">
+      <Filter>Source\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Platform\OpenGL\OpenGLTexture.h">
       <Filter>Source\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="Source\Platform\OpenGL\OpenGLVertexArray.h">
@@ -1407,6 +1416,9 @@
     <ClInclude Include="ThirdParty\glm\glm\vector_relational.hpp">
       <Filter>ThirdParty\glm\glm</Filter>
     </ClInclude>
+    <ClInclude Include="ThirdParty\stb_image\stb_image.h">
+      <Filter>ThirdParty\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\LE\Application.cpp">
@@ -1445,6 +1457,9 @@
     <ClCompile Include="Source\LE\Renderer\Shader.cpp">
       <Filter>Source\LE\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Source\LE\Renderer\Texture.cpp">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="Source\LE\Renderer\VertexArray.cpp">
       <Filter>Source\LE\Renderer</Filter>
     </ClCompile>
@@ -1466,6 +1481,9 @@
     <ClCompile Include="Source\Platform\OpenGL\OpenGLShader.cpp">
       <Filter>Source\Platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>Source\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>Source\Platform\OpenGL</Filter>
     </ClCompile>
@@ -1474,6 +1492,9 @@
     </ClCompile>
     <ClCompile Include="Source\Platform\Windows\WindowsWindow.cpp">
       <Filter>Source\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\stb_image\stb_image.cpp">
+      <Filter>ThirdParty\stb_image</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -22,6 +22,7 @@
 
 #include "LE/Renderer/Buffers.h"
 #include "LE/Renderer/Shader.h"
+#include "LE/Renderer/Texture.h"
 #include "LE/Renderer/VertexArray.h"
 
 #include "LE/Renderer/OrthographicCamera.h"

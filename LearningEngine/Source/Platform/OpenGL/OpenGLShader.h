@@ -1,7 +1,13 @@
 #pragma once
 
 #include "LE/Renderer/Shader.h"
+
 #include <glm/glm.hpp>
+
+#include <string>
+
+// TODO: Remove ASAP
+typedef unsigned int GLenum;
 
 namespace LE
 {
@@ -9,6 +15,7 @@ namespace LE
 	{
 	public:
 
+		OpenGLShader(const std::string& FilePath);
 		OpenGLShader(const std::string& VertexShader, const std::string& FragmentShader);
 		virtual ~OpenGLShader();
 
@@ -25,6 +32,11 @@ namespace LE
 		void UploadUniformMat3(const std::string& Name, const glm::mat3& Matrix) const;
 		void UploadUniformMat4(const std::string& Name, const glm::mat4& Matrix) const;
 
+	private:
+
+		std::string ReadFile(const std::string& FilePath) const;
+		std::unordered_map<GLenum, std::string> PreProcess(const std::string& Source);
+		void Compile(const std::unordered_map<GLenum, std::string>& ShaderSrc);
 
 	private:
 
