@@ -20,7 +20,7 @@ namespace LE
 		virtual void SetClearColor(const glm::vec4& Color) = 0;
 		virtual void Clear() = 0;
 
-		virtual void DrawIndexed(const std::shared_ptr<VertexArray>& VertexArray) = 0;
+		virtual void DrawIndexed(const TSharedPtr<VertexArray>& VertexArray) = 0;
 
 		inline static API GetAPI()
 		{

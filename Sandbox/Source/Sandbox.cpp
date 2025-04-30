@@ -60,7 +60,7 @@ public:
 			-0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f
 		};
 
-		std::shared_ptr<LE::VertexBuffer> vertexBuffer;
+		LE::TSharedPtr<LE::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(LE::VertexBuffer::Create(vb, sizeof(vb)));
 
 		LE::VertexBufferLayout layout = {
@@ -72,7 +72,7 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t ib[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<LE::IndexBuffer> indexBuffer;
+		LE::TSharedPtr<LE::IndexBuffer> indexBuffer;
 		indexBuffer.reset(LE::IndexBuffer::Create(ib, 6));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 	}
@@ -127,8 +127,8 @@ public:
 
 private:
 
-	std::shared_ptr<LE::Shader> m_Shader;
-	std::shared_ptr<LE::VertexArray> m_VertexArray;
+	LE::TSharedPtr<LE::Shader> m_Shader;
+	LE::TSharedPtr<LE::VertexArray> m_VertexArray;
 
 	LE::OrthographicCamera m_Camera;
 

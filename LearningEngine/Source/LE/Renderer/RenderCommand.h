@@ -20,7 +20,7 @@ namespace LE
 			s_RenderAPI->Clear();
 		}
 
-		inline static void DrawIndexed(const std::shared_ptr<VertexArray>& VertexArray)
+		inline static void DrawIndexed(const TSharedPtr<VertexArray>& VertexArray)
 		{
 			s_RenderAPI->DrawIndexed(VertexArray);
 		}

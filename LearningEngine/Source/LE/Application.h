@@ -42,7 +42,7 @@ namespace LE
 
 		static Application* s_Instance;
 
-		std::unique_ptr<Window> m_Window;
+		TUniquePtr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 
 		bool bIsRunning = true;

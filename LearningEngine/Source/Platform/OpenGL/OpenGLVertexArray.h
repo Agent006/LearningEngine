@@ -14,15 +14,15 @@ namespace LE
 		virtual void Bind() const override;
 		virtual void Unbind() const override;
 
-		virtual void AddVertexBuffer(const std::shared_ptr<VertexBuffer>& VertexBuffer) override;
-		virtual void SetIndexBuffer(const std::shared_ptr<IndexBuffer>& IndexBuffer) override;
+		virtual void AddVertexBuffer(const TSharedPtr<VertexBuffer>& VertexBuffer) override;
+		virtual void SetIndexBuffer(const TSharedPtr<IndexBuffer>& IndexBuffer) override;
 
-		virtual inline const std::vector<std::shared_ptr<VertexBuffer>>& GetVertexBuffers() const override
+		virtual inline const std::vector<TSharedPtr<VertexBuffer>>& GetVertexBuffers() const override
 		{
 			return m_VertexBuffers;
 		}
 
-		virtual inline const std::shared_ptr<IndexBuffer>& GetIndexBuffer() const override
+		virtual inline const TSharedPtr<IndexBuffer>& GetIndexBuffer() const override
 		{
 			return m_IndexBuffer;
 		}
@@ -31,7 +31,7 @@ namespace LE
 
 		uint32_t m_RendererId;
 
-		std::vector<std::shared_ptr<VertexBuffer>> m_VertexBuffers;
-		std::shared_ptr<IndexBuffer> m_IndexBuffer;
+		std::vector<TSharedPtr<VertexBuffer>> m_VertexBuffers;
+		TSharedPtr<IndexBuffer> m_IndexBuffer;
 	};
 }

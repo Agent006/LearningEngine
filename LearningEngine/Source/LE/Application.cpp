@@ -18,7 +18,7 @@ namespace LE
 		LE_CORE_ASSERT(!s_Instance, "Only one instance of Application can be present!");
 		s_Instance = this;
 
-		m_Window = std::unique_ptr<Window>(Window::Create());
+		m_Window = TUniquePtr<Window>(Window::Create());
 		m_Window->SetEventCallback(LE_BIND(this, &Application::OnEvent));
 
 		m_ImGuiLayer = new ImGuiLayer();

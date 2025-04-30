@@ -18,7 +18,7 @@ namespace LE
 
 	}
 
-	void Renderer::Submit(const std::shared_ptr<Shader>& Shader, const std::shared_ptr<VertexArray>& VertexArray, const glm::mat4& Transform)
+	void Renderer::Submit(const TSharedPtr<Shader>& Shader, const TSharedPtr<VertexArray>& VertexArray, const glm::mat4& Transform)
 	{
 		Shader->Bind();
 		std::dynamic_pointer_cast<OpenGLShader>(Shader)->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);

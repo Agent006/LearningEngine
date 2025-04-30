@@ -1,6 +1,8 @@
 
 #pragma once
 
+#include <memory>
+
 // ------
 
 #ifdef LE_PLATFORM_WINDOWS
@@ -38,3 +40,17 @@
 // ------
 
 #define LE_BIND(ptr, fn) std::bind(fn, ptr, std::placeholders::_1)
+
+// ------
+
+namespace LE
+{
+	template<typename T>
+	using TUniquePtr = std::unique_ptr<T>;
+
+	template<typename T>
+	using TSharedPtr = std::shared_ptr<T>;
+
+	template<typename T>
+	using TWeakPtr = std::weak_ptr<T>;
+}

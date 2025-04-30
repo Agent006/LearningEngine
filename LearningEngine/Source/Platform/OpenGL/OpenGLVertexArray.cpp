@@ -46,7 +46,7 @@ namespace LE
 		return 0;
 	}
 
-	void OpenGLVertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& VertexBuffer)
+	void OpenGLVertexArray::AddVertexBuffer(const TSharedPtr<VertexBuffer>& VertexBuffer)
 	{
 		LE_CORE_ASSERT(VertexBuffer->GetBufferLayout().GetElements().size() > 0, "Vertex Buffer has no layout!");
 
@@ -69,7 +69,7 @@ namespace LE
 		m_VertexBuffers.push_back(VertexBuffer);
 	}
 
-	void OpenGLVertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& IndexBuffer)
+	void OpenGLVertexArray::SetIndexBuffer(const TSharedPtr<IndexBuffer>& IndexBuffer)
 	{
 		glBindVertexArray(m_RendererId);
 		IndexBuffer->Bind();
