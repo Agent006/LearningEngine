@@ -54,17 +54,38 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\LE\Application.h">
-      <Filter>Source\LE</Filter>
+    <ClInclude Include="Source\LE\Core\Application.h">
+      <Filter>Source\LE\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Source\LE\Core.h">
-      <Filter>Source\LE</Filter>
+    <ClInclude Include="Source\LE\Core\Core.h">
+      <Filter>Source\LE\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Core\EntryPoint.h">
+      <Filter>Source\LE\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Core\Input.h">
+      <Filter>Source\LE\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Core\KeyCodes.h">
+      <Filter>Source\LE\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Core\Layer.h">
+      <Filter>Source\LE\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Core\LayerStack.h">
+      <Filter>Source\LE\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Core\Log.h">
+      <Filter>Source\LE\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Core\MouseButtonCodes.h">
+      <Filter>Source\LE\Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\LE\Core\Timestep.h">
       <Filter>Source\LE\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Source\LE\EntryPoint.h">
-      <Filter>Source\LE</Filter>
+    <ClInclude Include="Source\LE\Core\Window.h">
+      <Filter>Source\LE\Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\LE\Events\ApplicationEvent.h">
       <Filter>Source\LE\Events</Filter>
@@ -81,24 +102,6 @@
     <ClInclude Include="Source\LE\ImGui\ImGuiLayer.h">
       <Filter>Source\LE\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="Source\LE\Input.h">
-      <Filter>Source\LE</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LE\KeyCodes.h">
-      <Filter>Source\LE</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LE\Layer.h">
-      <Filter>Source\LE</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LE\LayerStack.h">
-      <Filter>Source\LE</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LE\Log.h">
-      <Filter>Source\LE</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LE\MouseButtonCodes.h">
-      <Filter>Source\LE</Filter>
-    </ClInclude>
     <ClInclude Include="Source\LE\Renderer\Buffers.h">
       <Filter>Source\LE\Renderer</Filter>
     </ClInclude>
@@ -106,6 +109,9 @@
       <Filter>Source\LE\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Source\LE\Renderer\OrthographicCamera.h">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Renderer\OrthographicCameraController.h">
       <Filter>Source\LE\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Source\LE\Renderer\RenderCommand.h">
@@ -128,9 +134,6 @@
     </ClInclude>
     <ClInclude Include="Source\LE\Renderer\VertexBufferLayout.h">
       <Filter>Source\LE\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LE\Window.h">
-      <Filter>Source\LE</Filter>
     </ClInclude>
     <ClInclude Include="Source\LEpch.h">
       <Filter>Source</Filter>
@@ -1421,8 +1424,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\LE\Application.cpp">
-      <Filter>Source\LE</Filter>
+    <ClCompile Include="Source\LE\Core\Application.cpp">
+      <Filter>Source\LE\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LE\Core\Layer.cpp">
+      <Filter>Source\LE\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LE\Core\LayerStack.cpp">
+      <Filter>Source\LE\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LE\Core\Log.cpp">
+      <Filter>Source\LE\Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\LE\ImGui\ImGuiBuild.cpp">
       <Filter>Source\LE\ImGui</Filter>
@@ -1430,19 +1442,13 @@
     <ClCompile Include="Source\LE\ImGui\ImGuiLayer.cpp">
       <Filter>Source\LE\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LE\Layer.cpp">
-      <Filter>Source\LE</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LE\LayerStack.cpp">
-      <Filter>Source\LE</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LE\Log.cpp">
-      <Filter>Source\LE</Filter>
-    </ClCompile>
     <ClCompile Include="Source\LE\Renderer\Buffers.cpp">
       <Filter>Source\LE\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Source\LE\Renderer\OrthographicCamera.cpp">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LE\Renderer\OrthographicCameraController.cpp">
       <Filter>Source\LE\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Source\LE\Renderer\RenderCommand.cpp">

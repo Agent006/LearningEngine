@@ -16,11 +16,13 @@ namespace LE
 	public:
 
 		OpenGLShader(const std::string& FilePath);
-		OpenGLShader(const std::string& VertexShader, const std::string& FragmentShader);
+		OpenGLShader(const std::string& Name, const std::string& VertexShader, const std::string& FragmentShader);
 		virtual ~OpenGLShader();
 
 		virtual void Bind() const override;
 		virtual void Unbind() const override;
+
+		virtual const std::string& GetName() const override { return m_Name; }
 
 		void UploadUniformInt(const std::string& Name, int32_t Integer) const;
 
@@ -41,5 +43,7 @@ namespace LE
 	private:
 
 		uint32_t m_RendererId = 0;
+
+		std::string m_Name;
 	};
 }

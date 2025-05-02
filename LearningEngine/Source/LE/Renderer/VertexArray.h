@@ -20,6 +20,6 @@ namespace LE
 		virtual inline const std::vector<TSharedPtr<VertexBuffer>>& GetVertexBuffers() const = 0;
 		virtual inline const TSharedPtr<IndexBuffer>& GetIndexBuffer() const = 0;
 
-		static VertexArray* Create();
+		static TSharedPtr<VertexArray> Create();
 	};
 }

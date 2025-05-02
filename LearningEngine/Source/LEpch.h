@@ -9,10 +9,11 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <array>
 #include <unordered_map>
 #include <unordered_set>
 
-#include "LE/Log.h"
+#include "LE/Core/Log.h"
 
 #ifdef LE_PLATFORM_WINDOWS
 	#include <Windows.h>

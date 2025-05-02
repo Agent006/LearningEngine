@@ -6,7 +6,7 @@
 
 namespace LE
 {
-	VertexArray* VertexArray::Create()
+	TSharedPtr<VertexArray> VertexArray::Create()
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -17,7 +17,7 @@ namespace LE
 			}
 			case RendererAPI::API::OpenGL:
 			{
-				return new OpenGLVertexArray();
+				return std::make_shared<OpenGLVertexArray>();
 			}
 		}
 

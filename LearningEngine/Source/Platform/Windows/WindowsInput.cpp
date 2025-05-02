@@ -2,7 +2,7 @@
 #include "LEpch.h"
 #include "WindowsInput.h"
 
-#include "LE/Application.h"
+#include "LE/Core/Application.h"
 
 #include <GLFW/glfw3.h>
 

@@ -15,6 +15,11 @@ namespace LE
 			s_RenderAPI->Init();
 		}
 
+		inline static void SetViewport(uint32_t X, uint32_t Y, uint32_t Width, uint32_t Height)
+		{
+			s_RenderAPI->SetViewport(X, Y, Width, Height);
+		}
+
 		inline static void SetClearColor(const glm::vec4& Color)
 		{
 			s_RenderAPI->SetClearColor(Color);

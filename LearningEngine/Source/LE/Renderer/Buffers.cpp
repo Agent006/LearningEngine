@@ -7,7 +7,7 @@
 
 namespace LE
 {
-	VertexBuffer* VertexBuffer::Create(float* Vertices, uint32_t Size)
+	TSharedPtr<VertexBuffer> VertexBuffer::Create(float* Vertices, uint32_t Size)
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -18,7 +18,7 @@ namespace LE
 			}
 			case RendererAPI::API::OpenGL:
 			{
-				return new OpenGLVertexBuffer(Vertices, Size);
+				return std::make_shared<OpenGLVertexBuffer>(Vertices, Size);
 			}
 		}
 
@@ -26,7 +26,7 @@ namespace LE
 		return nullptr;
 	}
 
-	IndexBuffer* IndexBuffer::Create(uint32_t* Indices, uint32_t Size)
+	TSharedPtr<IndexBuffer> IndexBuffer::Create(uint32_t* Indices, uint32_t Size)
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -37,7 +37,7 @@ namespace LE
 			}
 			case RendererAPI::API::OpenGL:
 			{
-				return new OpenGLIndexBuffer(Indices, Size);
+				return std::make_shared<OpenGLIndexBuffer>(Indices, Size);
 			}
 		}
 

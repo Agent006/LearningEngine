@@ -1,6 +1,8 @@
 
 #include <LearningEngine.h>
 
+#include "LE/Events/ApplicationEvent.h"
+
 #include <glm/gtc/matrix_transform.hpp>
 
 // TEMP:
@@ -11,7 +13,7 @@ class ExampleLayer : public LE::Layer
 public:
 
 	ExampleLayer()
-		: LE::Layer("Layer"), m_Camera(-2.56f, 2.56f, -1.44f, 1.44f)
+		: LE::Layer("Layer"), m_CameraController(1280.f / 720.f)
 	{
 		std::string vertexShader = R"(
 			#version 330 core
@@ -21,7 +23,7 @@ public:
 			uniform mat4 u_Transform;
 
 			out vec3 v_Position;
-			
+
 			void main()
 			{
 				v_Position = a_Position;
@@ -43,16 +45,16 @@ public:
 			}
 		)";
 
-		m_Shader.reset(LE::Shader::Create(vertexShader, fragmentShader));
-		m_TextureShader.reset(LE::Shader::Create("Assets/Shaders/Texture.glsl"));
+		m_Shader = LE::Shader::Create("ShaderName", vertexShader, fragmentShader);
+		LE::TSharedPtr<LE::Shader> textureShader = m_ShaderLibrary.Load("Assets/Shaders/Texture.glsl");
 
-		std::dynamic_pointer_cast<LE::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<LE::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 
 		m_Texture = LE::Texture2D::Create("Assets/Textures/Checkerboard.png");
 		m_ChernoLogoTexture = LE::Texture2D::Create("Assets/Textures/ChernoLogo.png");
-		std::dynamic_pointer_cast<LE::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<LE::OpenGLShader>(textureShader)->Bind();
 
-		m_VertexArray.reset(LE::VertexArray::Create());
+		m_VertexArray = LE::VertexArray::Create();
 
 		float vb[5 * 4] =
 		{
@@ -63,7 +65,7 @@ public:
 		};
 
 		LE::TSharedPtr<LE::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(LE::VertexBuffer::Create(vb, sizeof(vb)));
+		vertexBuffer = LE::VertexBuffer::Create(vb, sizeof(vb));
 
 		LE::VertexBufferLayout layout = {
 			{ LE::ShaderDataType::Float3, "a_Position", false },
@@ -75,31 +77,19 @@ public:
 
 		uint32_t ib[6] = { 0, 1, 2, 2, 3, 0 };
 		LE::TSharedPtr<LE::IndexBuffer> indexBuffer;
-		indexBuffer.reset(LE::IndexBuffer::Create(ib, 6));
+		indexBuffer = LE::IndexBuffer::Create(ib, 6);
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 	}
 
 	virtual void OnUpdate(LE::Timestep DeltaTime) override
 	{
-		float finalSpeed = m_CameraSpeed * DeltaTime;
-
-		if (LE::Input::IsKeyPressed(LE_KEY_W))
-			m_CameraPosition += glm::vec3(0, finalSpeed, 0);
-		else if (LE::Input::IsKeyPressed(LE_KEY_S))
-			m_CameraPosition += glm::vec3(0, -finalSpeed, 0);
-
-		if (LE::Input::IsKeyPressed(LE_KEY_A))
-			m_CameraPosition += glm::vec3(-finalSpeed, 0.f, 0);
-		else if (LE::Input::IsKeyPressed(LE_KEY_D))
-			m_CameraPosition += glm::vec3(finalSpeed, 0.f, 0);
-
-		m_Camera.SetPosition(m_CameraPosition);
+		m_CameraController.OnUpdate(DeltaTime);
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.f), glm::vec3(0.1f));
 		LE::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.f });
 		LE::RenderCommand::Clear();
 
-		LE::Renderer::BeginScene(m_Camera);
+		LE::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		std::dynamic_pointer_cast<LE::OpenGLShader>(m_Shader)->Bind();
 		std::dynamic_pointer_cast<LE::OpenGLShader>(m_Shader)->UploadUniformFloat3("u_Color", m_SquareColor);
@@ -113,11 +103,13 @@ public:
 			}
 		}
 
+		LE::TSharedPtr<LE::Shader> textureShader = m_ShaderLibrary.Get("Texture");
+
 		m_Texture->Bind(0);
-		LE::Renderer::Submit(m_TextureShader, m_VertexArray, glm::scale(glm::mat4(1.f), glm::vec3(1.5f)));
+		LE::Renderer::Submit(textureShader, m_VertexArray, glm::scale(glm::mat4(1.f), glm::vec3(1.5f)));
 
 		m_ChernoLogoTexture->Bind(0);
-		LE::Renderer::Submit(m_TextureShader, m_VertexArray, glm::scale(glm::mat4(1.f), glm::vec3(1.5f)));
+		LE::Renderer::Submit(textureShader, m_VertexArray, glm::scale(glm::mat4(1.f), glm::vec3(1.5f)));
 
 		LE::Renderer::EndScene();
 	}
@@ -132,18 +124,18 @@ public:
 	virtual void OnEvent(LE::Event& e) override
 	{
 		LE::EventDispatcher dispatcher(e);
+		m_CameraController.OnEvent(e);
 	}
 
 private:
 
-	LE::TSharedPtr<LE::Shader> m_Shader, m_TextureShader;
+	LE::ShaderLibrary m_ShaderLibrary;
+
+	LE::TSharedPtr<LE::Shader> m_Shader;
 	LE::TSharedPtr<LE::Texture> m_Texture, m_ChernoLogoTexture;
 	LE::TSharedPtr<LE::VertexArray> m_VertexArray;
 
-	LE::OrthographicCamera m_Camera;
-
-	glm::vec3 m_CameraPosition = glm::vec3(0,0,0);
-	float m_CameraSpeed = 1.f;
+	LE::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_SquareColor = glm::vec3(0.2f, 0.2f, 0.8f);
 };

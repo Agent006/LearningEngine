@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include "LE/Input.h"
+#include "LE/Core/Input.h"
 
 namespace LE
 {

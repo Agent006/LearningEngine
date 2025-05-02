@@ -1,6 +1,6 @@
 #pragma once
 
-#include "LE/Core.h"
+#include "LE/Core/Core.h"
 #include <string>
 
 namespace LE

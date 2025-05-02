@@ -16,7 +16,7 @@ namespace LE
 		virtual inline const VertexBufferLayout& GetBufferLayout() const = 0;
 		virtual void SetLayout(const VertexBufferLayout& Layout) = 0;
 
-		static VertexBuffer* Create(float* Vertices, uint32_t Size);
+		static TSharedPtr<VertexBuffer> Create(float* Vertices, uint32_t Size);
 	};
 
 	class IndexBuffer
@@ -30,6 +30,6 @@ namespace LE
 
 		virtual uint32_t GetCount() const = 0;
 
-		static IndexBuffer* Create(uint32_t* Indices, uint32_t Size);
+		static TSharedPtr<IndexBuffer> Create(uint32_t* Indices, uint32_t Size);
 	};
 }

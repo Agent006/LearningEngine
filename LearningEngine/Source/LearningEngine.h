@@ -3,15 +3,15 @@
 
 // For use by Learning Engine applications only
 
-#include "LE/Application.h"
-#include "LE/Layer.h"
-#include "LE/Log.h"
+#include "LE/Core/Application.h"
+#include "LE/Core/Layer.h"
+#include "LE/Core/Log.h"
 
 #include "LE/Core/Timestep.h"
 
-#include "LE/Input.h"
-#include "LE/KeyCodes.h"
-#include "LE/MouseButtonCodes.h"
+#include "LE/Core/Input.h"
+#include "LE/Core/KeyCodes.h"
+#include "LE/Core/MouseButtonCodes.h"
 
 #include "imgui.h"
 #include "LE/ImGui/ImGuiLayer.h"
@@ -26,8 +26,9 @@
 #include "LE/Renderer/VertexArray.h"
 
 #include "LE/Renderer/OrthographicCamera.h"
+#include "LE/Renderer/OrthographicCameraController.h"
 // ------------------------------
 
 // --EntryPoint------------------
-#include "LE/EntryPoint.h"
+#include "LE/Core/EntryPoint.h"
 // ------------------------------

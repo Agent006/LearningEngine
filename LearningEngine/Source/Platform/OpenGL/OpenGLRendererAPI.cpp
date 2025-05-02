@@ -16,6 +16,11 @@ namespace LE
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
+	void OpenGLRendererAPI::SetViewport(uint32_t X, uint32_t Y, uint32_t Width, uint32_t Height)
+	{
+		glViewport(X, Y, Width, Height);
+	}
+
 	void OpenGLRendererAPI::SetClearColor(const glm::vec4& Color)
 	{
 		glClearColor(Color.r, Color.g, Color.b, Color.a);

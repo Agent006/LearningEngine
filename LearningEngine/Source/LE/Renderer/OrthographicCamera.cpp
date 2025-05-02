@@ -8,6 +8,13 @@ namespace LE
 	OrthographicCamera::OrthographicCamera(float Left, float Right, float Bottom, float Top)
 		: m_ProjectionMatrix(glm::ortho(Left, Right, Bottom, Top, -1.f, 1.f)), m_ViewMatrix(1.f)
 	{
+		m_ProjectionMatrix = glm::ortho(Left, Right, Bottom, Top, -1.f, 1.f);
+		m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix;
+	}
+
+	void OrthographicCamera::SetProjection(float Left, float Right, float Bottom, float Top)
+	{
+		m_ProjectionMatrix = glm::ortho(Left, Right, Bottom, Top, -1.f, 1.f);
 		m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix;
 	}
 

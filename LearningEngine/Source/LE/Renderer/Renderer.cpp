@@ -13,7 +13,12 @@ namespace LE
 		RenderCommand::Init();
 	}
 
-	void Renderer::BeginScene(OrthographicCamera& Camera)
+	void Renderer::OnWindowResize(uint32_t Width, uint32_t Height)
+	{
+		RenderCommand::SetViewport(0, 0, Width, Height);
+	}
+
+	void Renderer::BeginScene(const OrthographicCamera& Camera)
 	{
 		m_SceneData->ViewProjectionMatrix = Camera.GetViewProjectionMatrix();
 	}

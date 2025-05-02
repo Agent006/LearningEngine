@@ -146,24 +146,26 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Source\LE\Application.h" />
-    <ClInclude Include="Source\LE\Core.h" />
+    <ClInclude Include="Source\LE\Core\Application.h" />
+    <ClInclude Include="Source\LE\Core\Core.h" />
+    <ClInclude Include="Source\LE\Core\EntryPoint.h" />
+    <ClInclude Include="Source\LE\Core\Input.h" />
+    <ClInclude Include="Source\LE\Core\KeyCodes.h" />
+    <ClInclude Include="Source\LE\Core\Layer.h" />
+    <ClInclude Include="Source\LE\Core\LayerStack.h" />
+    <ClInclude Include="Source\LE\Core\Log.h" />
+    <ClInclude Include="Source\LE\Core\MouseButtonCodes.h" />
     <ClInclude Include="Source\LE\Core\Timestep.h" />
-    <ClInclude Include="Source\LE\EntryPoint.h" />
+    <ClInclude Include="Source\LE\Core\Window.h" />
     <ClInclude Include="Source\LE\Events\ApplicationEvent.h" />
     <ClInclude Include="Source\LE\Events\Event.h" />
     <ClInclude Include="Source\LE\Events\KeyEvent.h" />
     <ClInclude Include="Source\LE\Events\MouseEvent.h" />
     <ClInclude Include="Source\LE\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="Source\LE\Input.h" />
-    <ClInclude Include="Source\LE\KeyCodes.h" />
-    <ClInclude Include="Source\LE\Layer.h" />
-    <ClInclude Include="Source\LE\LayerStack.h" />
-    <ClInclude Include="Source\LE\Log.h" />
-    <ClInclude Include="Source\LE\MouseButtonCodes.h" />
     <ClInclude Include="Source\LE\Renderer\Buffers.h" />
     <ClInclude Include="Source\LE\Renderer\GraphicsContext.h" />
     <ClInclude Include="Source\LE\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="Source\LE\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="Source\LE\Renderer\RenderCommand.h" />
     <ClInclude Include="Source\LE\Renderer\Renderer.h" />
     <ClInclude Include="Source\LE\Renderer\RendererAPI.h" />
@@ -171,7 +173,6 @@
     <ClInclude Include="Source\LE\Renderer\Texture.h" />
     <ClInclude Include="Source\LE\Renderer\VertexArray.h" />
     <ClInclude Include="Source\LE\Renderer\VertexBufferLayout.h" />
-    <ClInclude Include="Source\LE\Window.h" />
     <ClInclude Include="Source\LEpch.h" />
     <ClInclude Include="Source\LearningEngine.h" />
     <ClInclude Include="Source\Platform\OpenGL\OpenGLBuffers.h" />
@@ -603,14 +604,15 @@
     <ClInclude Include="ThirdParty\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\LE\Application.cpp" />
+    <ClCompile Include="Source\LE\Core\Application.cpp" />
+    <ClCompile Include="Source\LE\Core\Layer.cpp" />
+    <ClCompile Include="Source\LE\Core\LayerStack.cpp" />
+    <ClCompile Include="Source\LE\Core\Log.cpp" />
     <ClCompile Include="Source\LE\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="Source\LE\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="Source\LE\Layer.cpp" />
-    <ClCompile Include="Source\LE\LayerStack.cpp" />
-    <ClCompile Include="Source\LE\Log.cpp" />
     <ClCompile Include="Source\LE\Renderer\Buffers.cpp" />
     <ClCompile Include="Source\LE\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="Source\LE\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="Source\LE\Renderer\RenderCommand.cpp" />
     <ClCompile Include="Source\LE\Renderer\Renderer.cpp" />
     <ClCompile Include="Source\LE\Renderer\RendererAPI.cpp" />

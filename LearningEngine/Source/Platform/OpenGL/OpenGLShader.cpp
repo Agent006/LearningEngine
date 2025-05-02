@@ -21,12 +21,19 @@ namespace LE
 
 	OpenGLShader::OpenGLShader(const std::string& FilePath)
 	{
+		size_t lastSlash = FilePath.find_last_of("/\\");
+		lastSlash = lastSlash == std::string::npos ? 0 : lastSlash + 1;
+		size_t lastDot = FilePath.rfind('.');
+		size_t count = lastDot == std::string::npos ? FilePath.size() - lastSlash : lastDot - lastSlash;
+		m_Name = FilePath.substr(lastSlash, count);
+
 		std::string fileStr = ReadFile(FilePath);
 		std::unordered_map<GLenum, std::string> shaderSrc = PreProcess(fileStr);
 		Compile(shaderSrc);
 	}
 
-	OpenGLShader::OpenGLShader(const std::string& VertexShader, const std::string& FragmentShader)
+	OpenGLShader::OpenGLShader(const std::string& Name, const std::string& VertexShader, const std::string& FragmentShader)
+		: m_Name(Name)
 	{
 		std::unordered_map<GLenum, std::string> shaderSrc;
 		shaderSrc.insert({ GL_VERTEX_SHADER, VertexShader });
@@ -88,16 +95,20 @@ namespace LE
 	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& ShaderSrc)
 	{
 		uint32_t programId = glCreateProgram();
-		std::vector<uint32_t> shaderIds;
-		shaderIds.reserve(ShaderSrc.size());
+		const uint32_t MaxNumberOfShaders = 2;
+		LE_CORE_ASSERT(ShaderSrc.size() <= MaxNumberOfShaders, "Only maximum of two shaders are supported at this moment");
+		std::array<int32_t, MaxNumberOfShaders> shaderIds;
+		std::fill(shaderIds.begin(), shaderIds.end(), -1);
 
+		uint32_t it = 0;
 		for (const std::pair<GLenum, std::string>& currentShaderSrc : ShaderSrc)
 		{
 			const GLenum type = currentShaderSrc.first;
 			const std::string& sourceStr = currentShaderSrc.second;
 
 			uint32_t shaderId = glCreateShader(type);
-			shaderIds.push_back(shaderId);
+			shaderIds[it] = shaderId;
+			it++;
 
 			const char* source = sourceStr.c_str();
 			glShaderSource(shaderId, 1, &source, 0);
@@ -110,7 +121,10 @@ namespace LE
 			{
 				for (uint32_t currentShaderId : shaderIds)
 				{
-					glDeleteShader(currentShaderId);
+					if (currentShaderId >= 0)
+					{
+						glDeleteShader(currentShaderId);
+					}
 				}
 
 				int32_t maxLength = 0;
@@ -139,7 +153,10 @@ namespace LE
 		{
 			for (uint32_t currentShaderId : shaderIds)
 			{
-				glDeleteShader(currentShaderId);
+				if (currentShaderId >= 0)
+				{
+					glDeleteShader(currentShaderId);
+				}
 			}
 
 			int32_t maxLength = 0;
@@ -161,7 +178,10 @@ namespace LE
 
 		for (uint32_t currentShaderId : shaderIds)
 		{
-			glDetachShader(programId, currentShaderId);
+			if (currentShaderId >= 0)
+			{
+				glDetachShader(programId, currentShaderId);
+			}
 		}
 
 		m_RendererId = programId;

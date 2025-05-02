@@ -19,7 +19,9 @@ namespace LE
 
 		static void Init();
 
-		static void BeginScene(OrthographicCamera& Camera);
+		static void OnWindowResize(uint32_t Width, uint32_t Height);
+
+		static void BeginScene(const OrthographicCamera& Camera);
 		static void EndScene();
 
 		static void Submit(const TSharedPtr<Shader>& Shader, const TSharedPtr<VertexArray>& VertexArray, const glm::mat4& Transform);
