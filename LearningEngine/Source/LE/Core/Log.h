@@ -38,10 +38,10 @@ namespace LE
 #define LE_CORE_WARN(...)    LE::Log::GetCoreLogger()->warn(__VA_ARGS__);
 #define LE_CORE_INFO(...)    LE::Log::GetCoreLogger()->info(__VA_ARGS__);
 #define LE_CORE_TRACE(...)   LE::Log::GetCoreLogger()->trace(__VA_ARGS__);
-#define LE_CORE_FATAL(...)   LE::Log::GetCoreLogger()->fatal(__VA_ARGS__);
+#define LE_CORE_CRITICAL(...)   LE::Log::GetCoreLogger()->critical(__VA_ARGS__);
 
 #define LE_ERROR(...)        LE::Log::GetClientLogger()->error(__VA_ARGS__);
 #define LE_WARN(...)         LE::Log::GetClientLogger()->warn(__VA_ARGS__);
 #define LE_INFO(...)         LE::Log::GetClientLogger()->info(__VA_ARGS__);
 #define LE_TRACE(...)        LE::Log::GetClientLogger()->trace(__VA_ARGS__);
-#define LE_FATAL(...)        LE::Log::GetClientLogger()->fatal(__VA_ARGS__);
+#define LE_CRITICAL(...)        LE::Log::GetClientLogger()->critical(__VA_ARGS__);

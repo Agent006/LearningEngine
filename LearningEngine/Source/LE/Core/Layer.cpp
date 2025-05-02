@@ -9,9 +9,4 @@ namespace LE
 	{
 
 	}
-
-	Layer::~Layer()
-	{
-
-	}
 }

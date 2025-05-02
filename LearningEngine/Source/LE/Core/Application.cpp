@@ -29,11 +29,6 @@ namespace LE
 		PushOverlay(m_ImGuiLayer);
 	}
 
-	Application::~Application()
-	{
-
-	}
-
 	void Application::Run()
 	{
 		while (bIsRunning)
@@ -65,13 +60,11 @@ namespace LE
 	void Application::PushLayer(Layer* Layer)
 	{
 		m_LayerStack.PushLayer(Layer);
-		Layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* Overlay)
 	{
 		m_LayerStack.PushOverlay(Overlay);
-		Overlay->OnAttach();
 	}
 
 	void Application::OnEvent(Event& e)

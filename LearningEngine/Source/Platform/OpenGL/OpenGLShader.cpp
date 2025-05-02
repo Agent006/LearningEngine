@@ -181,6 +181,7 @@ namespace LE
 			if (currentShaderId >= 0)
 			{
 				glDetachShader(programId, currentShaderId);
+				glDeleteShader(currentShaderId);
 			}
 		}
 

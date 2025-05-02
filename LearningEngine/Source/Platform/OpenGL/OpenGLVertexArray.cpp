@@ -51,22 +51,24 @@ namespace LE
 		LE_CORE_ASSERT(VertexBuffer->GetBufferLayout().GetElements().size() > 0, "Vertex Buffer has no layout!");
 
 		glBindVertexArray(m_RendererId);
-		VertexBuffer->Bind();
+		VertexBuffer->Bind(); 
 
 		const uint32_t layoutElementsCount = (uint32_t)VertexBuffer->GetBufferLayout().GetElements().size();
 		for (uint32_t i = 0; i < layoutElementsCount; i++)
 		{
 			const BufferElement& element = VertexBuffer->GetBufferLayout().GetElements()[i];
-			glEnableVertexAttribArray(i);
-			glVertexAttribPointer(i,
+			glEnableVertexAttribArray(i + m_VertexBufferIndexOffset);
+			glVertexAttribPointer(
+				i + m_VertexBufferIndexOffset,
 				element.GetComponentCount(),
 				ShaderDataTypeToOpenGLDataType(element.Type),
 				element.bNormalized ? GL_TRUE : GL_FALSE,
 				VertexBuffer->GetBufferLayout().GetStride(),
-				(const void*)element.Offset);
+				reinterpret_cast<const void*>((uintptr_t)element.Offset));
 		}
 
 		m_VertexBuffers.push_back(VertexBuffer);
+		m_VertexBufferIndexOffset += layoutElementsCount;
 	}
 
 	void OpenGLVertexArray::SetIndexBuffer(const TSharedPtr<IndexBuffer>& IndexBuffer)

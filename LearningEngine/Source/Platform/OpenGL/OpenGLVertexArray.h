@@ -30,6 +30,7 @@ namespace LE
 	private:
 
 		uint32_t m_RendererId;
+		uint32_t m_VertexBufferIndexOffset = 0;
 
 		std::vector<TSharedPtr<VertexBuffer>> m_VertexBuffers;
 		TSharedPtr<IndexBuffer> m_IndexBuffer;

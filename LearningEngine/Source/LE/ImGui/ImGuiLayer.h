@@ -12,7 +12,6 @@ namespace LE
 	public:
 
 		ImGuiLayer();
-		~ImGuiLayer();
 
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;
