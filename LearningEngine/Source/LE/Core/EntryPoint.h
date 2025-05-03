@@ -1,7 +1,8 @@
 
 #pragma once
 
-#include "Log.h"
+#include "LE/Core/Core.h"
+#include "LE/Core/Log.h"
 
 #ifdef LE_PLATFORM_WINDOWS
 

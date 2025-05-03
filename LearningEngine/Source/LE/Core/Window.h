@@ -18,7 +18,7 @@ namespace LE
 			: Title(Title), Width(Width), Height(Height) {}
 	};
 
-	class LE_API Window
+	class Window
 	{
 	public:
 

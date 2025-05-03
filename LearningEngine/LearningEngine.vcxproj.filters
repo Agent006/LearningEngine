@@ -1504,5 +1504,6 @@
       <Filter>ThirdParty\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="Source\LE\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="Source\LE\Renderer\GraphicsContext.cpp" />
   </ItemGroup>
 </Project>

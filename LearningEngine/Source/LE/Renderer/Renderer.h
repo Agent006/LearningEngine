@@ -1,13 +1,12 @@
 #pragma once
 
-#include "RenderCommand.h"
-#include "RendererAPI.h"
+#include "LE/Renderer/RenderCommand.h"
+#include "LE/Renderer/RenderCommand.h"
 
-#include "VertexArray.h"
-
+#include "LE/Renderer/VertexArray.h"
 #include "LE/Renderer/OrthographicCamera.h"
 
-#include "Shader.h"
+#include "LE/Renderer/Shader.h"
 
 #include <glm/glm.hpp>
 
@@ -18,6 +17,7 @@ namespace LE
 	public:
 
 		static void Init();
+		static void Shutdown();
 
 		static void OnWindowResize(uint32_t Width, uint32_t Height);
 

@@ -34,21 +34,6 @@
 	#error "Unknown platform!"
 #endif
 
-
-#ifdef LE_PLATFORM_WINDOWS
-#if LE_DYNAMIC_LINK
-	#ifdef LE_BUILD_DLL
-		#define LE_API __declspec(dllexport)
-	#else
-		#define LE_API __declspec(dllimport)
-	#endif
-#else
-	#define LE_API
-#endif
-#else
-	#error "Learning Engine only supports Windows!"
-#endif
-
 // ------
 
 #define BIT(x) (1 << x)

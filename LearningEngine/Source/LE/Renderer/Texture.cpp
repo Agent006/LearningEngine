@@ -1,7 +1,8 @@
 #include "LEpch.h"
 #include "Texture.h"
 
-#include "Renderer.h"
+#include "LE/Renderer/Renderer.h"
+
 #include "Platform/OpenGL/OpenGLTexture.h"
 
 namespace LE

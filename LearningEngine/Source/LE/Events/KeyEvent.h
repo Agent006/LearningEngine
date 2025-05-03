@@ -5,7 +5,7 @@
 
 namespace LE
 {
-	class LE_API KeyEvent : public Event
+	class KeyEvent : public Event
 	{
 	public:
 
@@ -24,7 +24,7 @@ namespace LE
 		int32_t m_KeyCode;
 	};
 	
-	class LE_API KeyPressedEvent : public KeyEvent
+	class KeyPressedEvent : public KeyEvent
 	{
 	public:
 
@@ -56,7 +56,7 @@ namespace LE
 		int32_t m_RepeatCount;
 	};
 
-	class LE_API KeyReleasedEvent : public KeyEvent
+	class KeyReleasedEvent : public KeyEvent
 	{
 	public:
 
@@ -82,7 +82,7 @@ namespace LE
 		int32_t m_Scancode;
 	};
 
-	class LE_API KeyTypedEvent : public KeyEvent
+	class KeyTypedEvent : public KeyEvent
 	{
 	public:
 

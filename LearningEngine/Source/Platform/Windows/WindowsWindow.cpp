@@ -52,7 +52,7 @@ namespace LE
 
 		m_Window = glfwCreateWindow(m_Data.Width, m_Data.Height, m_Data.Title.c_str(), nullptr, nullptr);
 
-		m_Context = MakeUnique<OpenGLContext>(m_Window);
+		m_Context = OpenGLContext::Create(m_Window);
 		m_Context->Init();
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);

@@ -1,9 +1,6 @@
 #include "LEpch.h"
 #include "Renderer.h"
-#include "Renderer2D.h"
-
-// TEMP:
-#include "Platform/OpenGL/OpenGLShader.h"
+#include "LE/Renderer/Renderer2D.h"
 
 namespace LE
 {
@@ -13,6 +10,11 @@ namespace LE
 	{
 		RenderCommand::Init();
 		Renderer2D::Init();
+	}
+
+	void Renderer::Shutdown()
+	{
+		Renderer2D::Shutdown();
 	}
 
 	void Renderer::OnWindowResize(uint32_t Width, uint32_t Height)
@@ -33,8 +35,8 @@ namespace LE
 	void Renderer::Submit(const TSharedPtr<Shader>& Shader, const TSharedPtr<VertexArray>& VertexArray, const glm::mat4& Transform)
 	{
 		Shader->Bind();
-		std::dynamic_pointer_cast<OpenGLShader>(Shader)->UploadUniformMat4("u_ViewProjection", s_SceneData->ViewProjectionMatrix);
-		std::dynamic_pointer_cast<OpenGLShader>(Shader)->UploadUniformMat4("u_Transform", Transform);
+		Shader->SetMat4("u_ViewProjection", s_SceneData->ViewProjectionMatrix);
+		Shader->SetMat4("u_Transform", Transform);
 
 		VertexArray->Bind();
 		RenderCommand::DrawIndexed(VertexArray);

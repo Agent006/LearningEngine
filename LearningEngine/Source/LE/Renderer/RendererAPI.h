@@ -1,7 +1,7 @@
 #pragma once
 
-#include <glm/glm.hpp>
 #include "LE/Renderer/VertexArray.h"
+#include <glm/glm.hpp>
 
 namespace LE
 {
@@ -26,10 +26,8 @@ namespace LE
 
 		virtual void DrawIndexed(const TSharedPtr<VertexArray>& VertexArray) = 0;
 
-		inline static API GetAPI()
-		{
-			return s_API;
-		}
+		inline static API GetAPI() { return s_API; }
+		static TUniquePtr<RendererAPI> Create();
 
 	private:
 

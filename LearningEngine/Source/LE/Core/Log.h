@@ -1,13 +1,13 @@
 
 #pragma once
 
-#include "Core.h"
-#include "spdlog/spdlog.h"
-#include "spdlog/fmt/ostr.h"
+#include "LE/Core/Core.h"
+#include <spdlog/spdlog.h>
+#include <spdlog/fmt/ostr.h>
 
 namespace LE
 {
-	class LE_API Log
+	class Log
 	{
 	public:
 

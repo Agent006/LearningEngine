@@ -5,7 +5,7 @@
 
 namespace LE
 {
-	class LE_API MouseMovedEvent : public Event
+	class MouseMovedEvent : public Event
 	{
 	public:
 
@@ -37,7 +37,7 @@ namespace LE
 		float m_MouseX, m_MouseY;
 	};
 
-	class LE_API MouseScrolledEvent : public Event
+	class MouseScrolledEvent : public Event
 	{
 	public:
 
@@ -69,7 +69,7 @@ namespace LE
 		float m_XOffset, m_YOffset;
 	};
 
-	class LE_API MouseButtonEvent : public Event
+	class MouseButtonEvent : public Event
 	{
 	public:
 
@@ -88,7 +88,7 @@ namespace LE
 		int32_t m_ButtonCode;
 	};
 
-	class LE_API MouseButtonPressedEvent : public MouseButtonEvent
+	class MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
 
@@ -105,7 +105,7 @@ namespace LE
 		EVENT_CLASS_TYPE(EventType::MouseButtonPressed);
 	};
 
-	class LE_API MouseButtonReleasedEvent : public MouseButtonEvent
+	class MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
 

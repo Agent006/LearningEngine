@@ -616,6 +616,7 @@
     <ClCompile Include="Source\LE\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="Source\LE\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="Source\LE\Renderer\Buffers.cpp" />
+    <ClCompile Include="Source\LE\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="Source\LE\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="Source\LE\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="Source\LE\Renderer\RenderCommand.cpp" />

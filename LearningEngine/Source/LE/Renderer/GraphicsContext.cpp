@@ -1,15 +1,12 @@
 #include "LEpch.h"
-#include "RendererAPI.h"
+#include "GraphicsContext.h"
 
 #include "LE/Renderer/Renderer.h"
-
-#include "Platform/OpenGL/OpenGLRendererAPI.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace LE
 {
-	RendererAPI::API RendererAPI::s_API = RendererAPI::API::OpenGL;
-
-	TUniquePtr<RendererAPI> RendererAPI::Create()
+	TUniquePtr<GraphicsContext> GraphicsContext::Create(void* Window)
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -20,7 +17,7 @@ namespace LE
 			}
 			case RendererAPI::API::OpenGL:
 			{
-				return MakeUnique<OpenGLRendererAPI>();
+				return MakeUnique<OpenGLContext>(static_cast<GLFWwindow*>(Window));
 			}
 		}
 

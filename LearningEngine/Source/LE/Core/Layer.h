@@ -7,7 +7,7 @@
 
 namespace LE
 {
-	class LE_API Layer
+	class Layer
 	{
 	public:
 

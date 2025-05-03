@@ -1,9 +1,9 @@
 
 #include "LEpch.h"
-
 #include "Log.h"
-#include "spdlog/sinks/stdout_color_sinks.h"
-#include "spdlog/common.h"
+
+#include <spdlog/sinks/stdout_color_sinks.h>
+#include <spdlog/common.h>
 
 namespace LE
 {

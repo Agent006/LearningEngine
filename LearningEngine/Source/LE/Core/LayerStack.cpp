@@ -4,10 +4,6 @@
 
 namespace LE
 {
-	LayerStack::LayerStack()
-	{
-	}
-
 	LayerStack::~LayerStack()
 	{
 		for (Layer* currentLayer : m_Layers)

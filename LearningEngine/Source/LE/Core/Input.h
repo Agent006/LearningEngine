@@ -5,7 +5,7 @@
 
 namespace LE
 {
-	class LE_API Input
+	class Input
 	{
 	protected:
 

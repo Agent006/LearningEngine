@@ -2,15 +2,15 @@
 #pragma once
 
 #include "LE/Core/Core.h"
-#include "Layer.h"
+#include "LE/Core/Layer.h"
 
 namespace LE
 {
-	class LE_API LayerStack
+	class LayerStack
 	{
 	public:
 
-		LayerStack();
+		LayerStack() = default;
 		~LayerStack();
 
 		void PushLayer(Layer* Layer); 

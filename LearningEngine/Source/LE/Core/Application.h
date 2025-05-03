@@ -1,16 +1,16 @@
 
 #pragma once
 
-#include "Core.h"
-#include "Window.h"
+#include "LE/Core/Core.h"
+#include "LE/Core/Window.h"
 #include "LE/Events/ApplicationEvent.h"
-#include "LayerStack.h"
+#include "LE/Core/LayerStack.h"
 
 #include "LE/ImGui/ImGuiLayer.h"
 
 namespace LE
 {
-	class LE_API Application
+	class Application
 	{
 	public:
 
@@ -20,7 +20,7 @@ namespace LE
 		}
 
 		Application();
-		virtual ~Application() = default;
+		virtual ~Application();
 
 		void Run();
 

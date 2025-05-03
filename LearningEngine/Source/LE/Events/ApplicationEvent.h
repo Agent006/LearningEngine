@@ -5,7 +5,7 @@
 
 namespace LE
 {
-	class LE_API WindowResizeEvent : public Event
+	class WindowResizeEvent : public Event
 	{
 	public:
 
@@ -37,41 +37,41 @@ namespace LE
 		uint32_t m_Width, m_Height;
 	};
 
-	class LE_API WindowCloseEvent : public Event
+	class WindowCloseEvent : public Event
 	{
 	public:
 
-		WindowCloseEvent() {}
+		WindowCloseEvent() = default;
 
 		EVENT_CLASS_TYPE(EventType::WindowClose);
 		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryApplication);
 	};
 
-	class LE_API AppTickEvent : public Event
+	class AppTickEvent : public Event
 	{
 	public:
 
-		AppTickEvent() {}
+		AppTickEvent() = default;
 
 		EVENT_CLASS_TYPE(EventType::AppTick);
 		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryApplication);
 	};
 
-	class LE_API AppUpdateEvent : public Event
+	class AppUpdateEvent : public Event
 	{
 	public:
 
-		AppUpdateEvent() {}
+		AppUpdateEvent() = default;
 
 		EVENT_CLASS_TYPE(EventType::AppUpdate);
 		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryApplication);
 	};
 
-	class LE_API AppRenderEvent : public Event
+	class AppRenderEvent : public Event
 	{
 	public:
 
-		AppRenderEvent() {}
+		AppRenderEvent() = default;
 
 		EVENT_CLASS_TYPE(EventType::AppRender);
 		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryApplication);

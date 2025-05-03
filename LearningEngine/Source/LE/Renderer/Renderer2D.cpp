@@ -35,8 +35,7 @@ namespace LE
 			-0.5f,  0.5f, 0.0f, 0.f, 1.f
 		};
 
-		TSharedPtr<VertexBuffer> vertexBuffer;
-		vertexBuffer = VertexBuffer::Create(vb, sizeof(vb));
+		TSharedPtr<VertexBuffer> vertexBuffer = VertexBuffer::Create(vb, sizeof(vb));
 
 		VertexBufferLayout layout = {
 			{ ShaderDataType::Float3, "a_Position", false },
@@ -47,8 +46,7 @@ namespace LE
 		s_Data->VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t ib[6] = { 0, 1, 2, 2, 3, 0 };
-		TSharedPtr<IndexBuffer> indexBuffer;
-		indexBuffer = IndexBuffer::Create(ib, 6);
+		TSharedPtr<IndexBuffer> indexBuffer = IndexBuffer::Create(ib, 6);
 		s_Data->VertexArray->SetIndexBuffer(indexBuffer);
 
 		s_Data->WhiteTexture = Texture2D::Create(1, 1);
