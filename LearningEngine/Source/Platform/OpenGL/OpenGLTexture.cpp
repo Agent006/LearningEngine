@@ -1,12 +1,26 @@
 #include "LEpch.h"
 #include "OpenGLTexture.h"
 
-#include <glad/glad.h>
-
 #include <stb_image.h>
 
 namespace LE
 {
+	OpenGLTexture2D::OpenGLTexture2D(uint32_t Width, uint32_t Height)
+		: m_Width(Width), m_Height(Height)
+	{
+		m_InternalFormat = GL_RGBA8;
+		m_DataFormat = GL_RGBA;
+
+		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererId);
+		glTextureStorage2D(m_RendererId, 1, m_InternalFormat, m_Width, m_Height);
+
+		glTextureParameteri(m_RendererId, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTextureParameteri(m_RendererId, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+		glTextureParameteri(m_RendererId, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTextureParameteri(m_RendererId, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	}
+
 	OpenGLTexture2D::OpenGLTexture2D(const std::string& Path)
 		: m_Path(Path)
 	{
@@ -18,27 +32,29 @@ namespace LE
 		m_Width = width;
 		m_Height = height;
 
-		GLenum internalFormat = 0, dataFormat = 0;
 		if (channels == 3)
 		{
-			internalFormat = GL_RGB8;
-			dataFormat = GL_RGB;
+			m_InternalFormat = GL_RGB8;
+			m_DataFormat = GL_RGB;
 		}
 		else if (channels == 4)
 		{
-			internalFormat = GL_RGBA8;
-			dataFormat = GL_RGBA;
+			m_InternalFormat = GL_RGBA8;
+			m_DataFormat = GL_RGBA;
 		}
 
-		LE_CORE_ASSERT(internalFormat && dataFormat, "Texture format is not supported!");
+		LE_CORE_ASSERT(m_InternalFormat && m_DataFormat, "Texture format is not supported!");
 
 		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererId);
-		glTextureStorage2D(m_RendererId, 1, internalFormat, m_Width, m_Height);
+		glTextureStorage2D(m_RendererId, 1, m_InternalFormat, m_Width, m_Height);
 
 		glTextureParameteri(m_RendererId, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTextureParameteri(m_RendererId, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-		glTextureSubImage2D(m_RendererId, 0, 0, 0, m_Width, m_Height, dataFormat, GL_UNSIGNED_BYTE, data);
+		glTextureParameteri(m_RendererId, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTextureParameteri(m_RendererId, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+		SetData(data, sizeof(data));
 
 		stbi_image_free(data);
 	}
@@ -51,5 +67,10 @@ namespace LE
 	void OpenGLTexture2D::Bind(uint32_t Slot) const
 	{
 		glBindTextureUnit(Slot, m_RendererId);
+	}
+
+	void OpenGLTexture2D::SetData(void* Data, size_t Size)
+	{
+		glTextureSubImage2D(m_RendererId, 0, 0, 0, m_Width, m_Height, m_DataFormat, GL_UNSIGNED_BYTE, Data);
 	}
 }

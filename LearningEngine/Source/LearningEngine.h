@@ -3,6 +3,8 @@
 
 // For use by Learning Engine applications only
 
+#include "LE/Core/Core.h"
+
 #include "LE/Core/Application.h"
 #include "LE/Core/Layer.h"
 #include "LE/Core/Log.h"
@@ -18,6 +20,7 @@
 
 // --Rendering------------------
 #include "LE/Renderer/Renderer.h"
+#include "LE/Renderer/Renderer2D.h"
 #include "LE/Renderer/RenderCommand.h"
 
 #include "LE/Renderer/Buffers.h"

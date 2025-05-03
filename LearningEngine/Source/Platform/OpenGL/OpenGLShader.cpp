@@ -198,6 +198,26 @@ namespace LE
 		glUseProgram(0);
 	}
 
+	void OpenGLShader::SetInt(const std::string& Name, int32_t Value)
+	{
+		UploadUniformInt(Name, Value);
+	}
+
+	void OpenGLShader::SetFloat3(const std::string& Name, const glm::vec3& Value)
+	{
+		UploadUniformFloat3(Name, Value);
+	}
+
+	void OpenGLShader::SetFloat4(const std::string& Name, const glm::vec4& Value)
+	{
+		UploadUniformFloat4(Name, Value);
+	}
+
+	void OpenGLShader::SetMat4(const std::string& Name, const glm::mat4& Value)
+	{
+		UploadUniformMat4(Name, Value);
+	}
+
 	void OpenGLShader::UploadUniformInt(const std::string& Name, int32_t Integer) const
 	{
 		int32_t pos = glGetUniformLocation(m_RendererId, Name.c_str());

@@ -3,9 +3,6 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
-// TEMP:
-#include "Platform/OpenGL/OpenGLShader.h"
-
 Sandbox2D::Sandbox2D()
 	: Layer("Sandbox2D"), m_CameraController(1280.f / 720.f)
 {
@@ -13,31 +10,7 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
-	m_Shader = LE::Shader::Create("Assets/Shaders/FlatColorShader.glsl");
-	m_VertexArray = LE::VertexArray::Create();
-
-	float vb[3 * 4] =
-	{
-		-0.5f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		 0.5f,  0.5f, 0.0f,
-		-0.5f,  0.5f, 0.0f
-	};
-
-	LE::TSharedPtr<LE::VertexBuffer> vertexBuffer;
-	vertexBuffer = LE::VertexBuffer::Create(vb, sizeof(vb));
-
-	LE::VertexBufferLayout layout = {
-		{ LE::ShaderDataType::Float3, "a_Position", false }
-	};
-
-	vertexBuffer->SetLayout(layout);
-	m_VertexArray->AddVertexBuffer(vertexBuffer);
-
-	uint32_t ib[6] = { 0, 1, 2, 2, 3, 0 };
-	LE::TSharedPtr<LE::IndexBuffer> indexBuffer;
-	indexBuffer = LE::IndexBuffer::Create(ib, 6);
-	m_VertexArray->SetIndexBuffer(indexBuffer);
+	m_Texture = LE::Texture2D::Create("Assets/Textures/Checkerboard.png");
 }
 
 void Sandbox2D::OnDetach()
@@ -52,14 +25,11 @@ void Sandbox2D::OnUpdate(LE::Timestep DeltaTime)
 	LE::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.f });
 	LE::RenderCommand::Clear();
 
-	LE::Renderer::BeginScene(m_CameraController.GetCamera());
-
-	std::dynamic_pointer_cast<LE::OpenGLShader>(m_Shader)->Bind();
-	std::dynamic_pointer_cast<LE::OpenGLShader>(m_Shader)->UploadUniformFloat4("u_Color", m_SquareColor);
-
-	LE::Renderer::Submit(m_Shader, m_VertexArray, glm::translate(glm::mat4(1.f), glm::vec3(0)));
-
-	LE::Renderer::EndScene();
+	LE::Renderer2D::BeginScene(m_CameraController.GetCamera());
+	LE::Renderer2D::DrawQuad(glm::vec3(0.f, 0.f, 1.f), glm::vec2(1.f, 1.f), glm::vec4(1.f, 0.f, 0.f, 1.f));
+	LE::Renderer2D::DrawQuad(glm::vec3(-0.5f, -0.5f, 1.f), glm::vec2(0.5f, 0.5f), glm::vec4(0.8f, 1.f, 0.2f, 1.f));
+	LE::Renderer2D::DrawQuad(glm::vec3(0.0f, 0.0f, 0.1f), glm::vec2(10.f, 10.f), m_Texture);
+	LE::Renderer2D::EndScene();
 }
 
 void Sandbox2D::OnImGuiRender()

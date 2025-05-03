@@ -1,6 +1,7 @@
 #pragma once
 
 #include "LE/Renderer/Texture.h"
+#include <glad/glad.h>
 
 namespace LE
 {
@@ -8,11 +9,14 @@ namespace LE
 	{
 	public:
 
+		OpenGLTexture2D(uint32_t Width, uint32_t Height);
 		OpenGLTexture2D(const std::string& Path);
 		virtual ~OpenGLTexture2D();
 
 		virtual uint32_t GetWidth() const override { return m_Width; }
 		virtual uint32_t GetHeight() const override { return m_Height; }
+
+		virtual void SetData(void* Data, size_t Size) override;
 
 		virtual void Bind(uint32_t Slot) const override;
 
@@ -24,5 +28,8 @@ namespace LE
 		uint32_t m_Height = 0;
 
 		uint32_t m_RendererId;
+
+		GLenum m_InternalFormat;
+		GLenum m_DataFormat;
 	};
 }

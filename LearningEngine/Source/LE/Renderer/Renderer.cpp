@@ -1,5 +1,6 @@
 #include "LEpch.h"
 #include "Renderer.h"
+#include "Renderer2D.h"
 
 // TEMP:
 #include "Platform/OpenGL/OpenGLShader.h"
@@ -11,6 +12,7 @@ namespace LE
 	void Renderer::Init()
 	{
 		RenderCommand::Init();
+		Renderer2D::Init();
 	}
 
 	void Renderer::OnWindowResize(uint32_t Width, uint32_t Height)

@@ -22,6 +22,11 @@ namespace LE
 		virtual void Bind() const override;
 		virtual void Unbind() const override;
 
+		virtual void SetInt(const std::string& Name, int32_t Value) override;
+		virtual void SetFloat3(const std::string& Name, const glm::vec3& Value) override;
+		virtual void SetFloat4(const std::string& Name, const glm::vec4& Value) override;
+		virtual void SetMat4(const std::string& Name, const glm::mat4& Value) override;
+
 		virtual const std::string& GetName() const override { return m_Name; }
 
 		void UploadUniformInt(const std::string& Name, int32_t Integer) const;

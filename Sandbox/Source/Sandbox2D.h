@@ -20,6 +20,7 @@ private:
 
 	LE::TSharedPtr<LE::VertexArray> m_VertexArray;
 	LE::TSharedPtr<LE::Shader> m_Shader;
+	LE::TSharedPtr<LE::Texture2D> m_Texture;
 
 	LE::OrthographicCameraController m_CameraController;
 
