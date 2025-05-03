@@ -18,7 +18,7 @@ namespace LE
 			}
 			case RendererAPI::API::OpenGL:
 			{
-				return std::make_shared<OpenGLVertexBuffer>(Vertices, Size);
+				return MakeShared<OpenGLVertexBuffer>(Vertices, Size);
 			}
 		}
 
@@ -37,7 +37,7 @@ namespace LE
 			}
 			case RendererAPI::API::OpenGL:
 			{
-				return std::make_shared<OpenGLIndexBuffer>(Indices, Size);
+				return MakeShared<OpenGLIndexBuffer>(Indices, Size);
 			}
 		}
 

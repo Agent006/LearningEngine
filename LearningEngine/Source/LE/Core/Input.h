@@ -50,6 +50,6 @@ namespace LE
 
 	private:
 
-		static Input* s_Instance;
+		static TUniquePtr<Input> s_Instance;
 	};
 }

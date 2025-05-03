@@ -5,5 +5,5 @@
 
 namespace LE
 {
-	RendererAPI* RenderCommand::s_RenderAPI = new OpenGLRendererAPI();
+	TUniquePtr<RendererAPI> RenderCommand::s_RenderAPI = MakeUnique<OpenGLRendererAPI>();
 }

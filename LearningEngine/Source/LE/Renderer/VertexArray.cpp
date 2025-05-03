@@ -17,7 +17,7 @@ namespace LE
 			}
 			case RendererAPI::API::OpenGL:
 			{
-				return std::make_shared<OpenGLVertexArray>();
+				return MakeShared<OpenGLVertexArray>();
 			}
 		}
 

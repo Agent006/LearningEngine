@@ -17,7 +17,7 @@ namespace LE
 			}
 			case RendererAPI::API::OpenGL:
 			{
-				return std::make_shared<OpenGLTexture2D>(Path);
+				return MakeShared<OpenGLTexture2D>(Path);
 			}
 		}
 

@@ -17,7 +17,7 @@ namespace LE
 			}
 			case RendererAPI::API::OpenGL:
 			{
-				return std::make_shared<OpenGLShader>(FilePath);
+				return MakeShared<OpenGLShader>(FilePath);
 			}
 		}
 
@@ -36,7 +36,7 @@ namespace LE
 			}
 			case RendererAPI::API::OpenGL:
 			{
-				return std::make_shared<OpenGLShader>(Name, VertexShader, FragmentShader);
+				return MakeShared<OpenGLShader>(Name, VertexShader, FragmentShader);
 			}
 		}
 

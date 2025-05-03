@@ -28,7 +28,3 @@
 #include "LE/Renderer/OrthographicCamera.h"
 #include "LE/Renderer/OrthographicCameraController.h"
 // ------------------------------
-
-// --EntryPoint------------------
-#include "LE/Core/EntryPoint.h"
-// ------------------------------

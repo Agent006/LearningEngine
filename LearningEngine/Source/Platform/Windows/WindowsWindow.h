@@ -50,7 +50,7 @@ namespace LE
 	private:
 
 		GLFWwindow* m_Window;
-		GraphicsContext* m_Context;
+		TUniquePtr<GraphicsContext> m_Context;
 
 		struct WindowData
 		{

@@ -8,7 +8,7 @@
 
 namespace LE
 {
-	Input* Input::s_Instance = new WindowsInput();
+	TUniquePtr<Input> Input::s_Instance = MakeUnique<WindowsInput>();
 
 	bool WindowsInput::IsKeyPressedImpl(int32_t Keycode) const
 	{

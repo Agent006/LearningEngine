@@ -38,6 +38,6 @@ namespace LE
 			glm::mat4 ViewProjectionMatrix;
 		};
 
-		static SceneData* s_SceneData;
+		static TUniquePtr<SceneData> s_SceneData;
 	};
 }

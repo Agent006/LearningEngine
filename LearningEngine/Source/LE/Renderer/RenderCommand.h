@@ -37,6 +37,6 @@ namespace LE
 
 	private:
 
-		static RendererAPI* s_RenderAPI;
+		static TUniquePtr<RendererAPI> s_RenderAPI;
 	};
 }
