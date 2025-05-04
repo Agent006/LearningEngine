@@ -7,6 +7,8 @@
 
 #include <thread>
 
+#include <filesystem>
+
 // Resulting JSON file can be loaded into chrome://tracing. Open it in GoogleChrome browser
 
 // TODO: Add mutex to WriteProfile function to lock multiple threads writing into the same file at the same time
@@ -60,7 +62,13 @@ namespace LE
 			if (m_IsSessionActive == false)
 			{
 				m_IsSessionActive = true;
-				m_OutputStream.open(FileName);
+
+				// TODO: find SolutionDirectory better? Make SOLUTION_DIR macro? What is the best way?
+				std::filesystem::path solDir = std::filesystem::current_path().parent_path();
+				std::filesystem::path profilingDir = solDir / "Saved\\Profiling";
+				std::filesystem::create_directories(profilingDir);
+
+				m_OutputStream.open(profilingDir / FileName);
 				WriteHeader();
 			}
 		}
@@ -86,7 +94,7 @@ namespace LE
 
 			std::string name = Result.Name;
 			std::replace(name.begin(), name.end(), '"', '\'');
-
+			
 			size_t callingConvStrLoc = name.find("__cdecl");
 			if (callingConvStrLoc != std::string::npos)
 			{

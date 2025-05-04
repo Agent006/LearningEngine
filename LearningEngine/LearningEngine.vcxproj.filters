@@ -10,6 +10,9 @@
     <Filter Include="Source\LE\Core">
       <UniqueIdentifier>{AE17ECD2-9AE5-DFD8-8379-50FF6FE6BB3D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\LE\Debug">
+      <UniqueIdentifier>{8C687B30-F8F3-E8F4-0105-6CE96D0F45F5}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source\LE\Events">
       <UniqueIdentifier>{BACC7243-A6C5-9195-CFF7-761ABB4F71A1}</UniqueIdentifier>
     </Filter>
@@ -87,6 +90,9 @@
     <ClInclude Include="Source\LE\Core\Window.h">
       <Filter>Source\LE\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Source\LE\Debug\Instrumentor.h">
+      <Filter>Source\LE\Debug</Filter>
+    </ClInclude>
     <ClInclude Include="Source\LE\Events\ApplicationEvent.h">
       <Filter>Source\LE\Events</Filter>
     </ClInclude>
@@ -118,6 +124,9 @@
       <Filter>Source\LE\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Source\LE\Renderer\Renderer.h">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Renderer\Renderer2D.h">
       <Filter>Source\LE\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Source\LE\Renderer\RendererAPI.h">
@@ -1422,8 +1431,6 @@
     <ClInclude Include="ThirdParty\stb_image\stb_image.h">
       <Filter>ThirdParty\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="Source\LE\Renderer\Renderer2D.h" />
-    <ClInclude Include="Source\LE\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\LE\Core\Application.cpp">
@@ -1447,6 +1454,9 @@
     <ClCompile Include="Source\LE\Renderer\Buffers.cpp">
       <Filter>Source\LE\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Source\LE\Renderer\GraphicsContext.cpp">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="Source\LE\Renderer\OrthographicCamera.cpp">
       <Filter>Source\LE\Renderer</Filter>
     </ClCompile>
@@ -1457,6 +1467,9 @@
       <Filter>Source\LE\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Source\LE\Renderer\Renderer.cpp">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LE\Renderer\Renderer2D.cpp">
       <Filter>Source\LE\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Source\LE\Renderer\RendererAPI.cpp">
@@ -1504,7 +1517,5 @@
     <ClCompile Include="ThirdParty\stb_image\stb_image.cpp">
       <Filter>ThirdParty\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LE\Renderer\Renderer2D.cpp" />
-    <ClCompile Include="Source\LE\Renderer\GraphicsContext.cpp" />
   </ItemGroup>
 </Project>

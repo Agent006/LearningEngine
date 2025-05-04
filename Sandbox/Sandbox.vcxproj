@@ -141,6 +141,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Sandbox2D.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="Source\Sandbox.cpp" />
     <ClCompile Include="Source\Sandbox2D.cpp" />
   </ItemGroup>
@@ -148,9 +151,6 @@
     <ProjectReference Include="..\LearningEngine\LearningEngine.vcxproj">
       <Project>{2B51F68C-171F-EA92-00B3-5AB9EC1FC6F7}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\Sandbox2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
