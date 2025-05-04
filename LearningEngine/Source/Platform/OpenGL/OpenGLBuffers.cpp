@@ -9,6 +9,8 @@ namespace LE
 
 	OpenGLVertexBuffer::OpenGLVertexBuffer(float* Vertices, uint32_t Size)
 	{
+		LE_PROFILE_FUNCTION();
+
 		glCreateBuffers(1, &m_RendererId);
 		glBindBuffer(GL_ARRAY_BUFFER, m_RendererId);
 		glBufferData(GL_ARRAY_BUFFER, Size, Vertices, GL_STATIC_DRAW);
@@ -16,16 +18,22 @@ namespace LE
 	
 	OpenGLVertexBuffer::~OpenGLVertexBuffer()
 	{
+		LE_PROFILE_FUNCTION();
+
 		glDeleteBuffers(1, &m_RendererId);
 	}
 
 	void OpenGLVertexBuffer::Bind() const
 	{
+		LE_PROFILE_FUNCTION();
+
 		glBindBuffer(GL_ARRAY_BUFFER, m_RendererId);
 	}
 
 	void OpenGLVertexBuffer::Unbind() const
 	{
+		LE_PROFILE_FUNCTION();
+
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
@@ -34,6 +42,8 @@ namespace LE
 	OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t* Indices, uint32_t Count)
 		: m_Count(Count)
 	{
+		LE_PROFILE_FUNCTION();
+
 		glCreateBuffers(1, &m_RendererId);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererId);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, Count * sizeof(uint32_t), Indices, GL_STATIC_DRAW);
@@ -41,16 +51,22 @@ namespace LE
 
 	OpenGLIndexBuffer::~OpenGLIndexBuffer()
 	{
+		LE_PROFILE_FUNCTION();
+
 		glDeleteBuffers(GL_ELEMENT_ARRAY_BUFFER, &m_RendererId);
 	}
 
 	void OpenGLIndexBuffer::Bind() const
 	{
+		LE_PROFILE_FUNCTION();
+
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererId);
 	}
 
 	void OpenGLIndexBuffer::Unbind() const
 	{
+		LE_PROFILE_FUNCTION();
+
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
 }

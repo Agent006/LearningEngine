@@ -8,6 +8,8 @@ namespace LE
 	OpenGLTexture2D::OpenGLTexture2D(uint32_t Width, uint32_t Height)
 		: m_Width(Width), m_Height(Height)
 	{
+		LE_PROFILE_FUNCTION();
+
 		m_InternalFormat = GL_RGBA8;
 		m_DataFormat = GL_RGBA;
 
@@ -24,10 +26,19 @@ namespace LE
 	OpenGLTexture2D::OpenGLTexture2D(const std::string& Path)
 		: m_Path(Path)
 	{
+		LE_PROFILE_FUNCTION();
+
 		stbi_set_flip_vertically_on_load(true);
 
 		int width, height, channels;
-		stbi_uc* data = stbi_load(Path.c_str(), &width, &height, &channels, 0);
+		stbi_uc* data = nullptr;
+
+		{
+			LE_PROFILE_SCOPE("stbi_load - OpenGLTexture2D::OpenGLTexture2D(const std::string&");
+
+			data = stbi_load(Path.c_str(), &width, &height, &channels, 0);
+		}
+
 		LE_CORE_ASSERT(data, "Failed to load image!");
 		m_Width = width;
 		m_Height = height;
@@ -61,16 +72,22 @@ namespace LE
 
 	OpenGLTexture2D::~OpenGLTexture2D()
 	{
+		LE_PROFILE_FUNCTION();
+
 		glDeleteTextures(1, &m_RendererId);
 	}
 
 	void OpenGLTexture2D::Bind(uint32_t Slot) const
 	{
+		LE_PROFILE_FUNCTION();
+
 		glBindTextureUnit(Slot, m_RendererId);
 	}
 
 	void OpenGLTexture2D::SetData(void* Data, size_t Size)
 	{
+		LE_PROFILE_FUNCTION();
+
 		glTextureSubImage2D(m_RendererId, 0, 0, 0, m_Width, m_Height, m_DataFormat, GL_UNSIGNED_BYTE, Data);
 	}
 }

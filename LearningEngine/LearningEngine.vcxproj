@@ -161,6 +161,7 @@
     <ClInclude Include="Source\LE\Core\MouseButtonCodes.h" />
     <ClInclude Include="Source\LE\Core\Timestep.h" />
     <ClInclude Include="Source\LE\Core\Window.h" />
+    <ClInclude Include="Source\LE\Debug\Instrumentor.h" />
     <ClInclude Include="Source\LE\Events\ApplicationEvent.h" />
     <ClInclude Include="Source\LE\Events\Event.h" />
     <ClInclude Include="Source\LE\Events\KeyEvent.h" />

@@ -17,6 +17,8 @@ namespace LE
 
 	Application::Application()
 	{
+		LE_PROFILE_FUNCTION();
+
 		LE_CORE_ASSERT(!s_Instance, "Only one instance of Application can be present!");
 		s_Instance = this;
 
@@ -31,13 +33,19 @@ namespace LE
 
 	Application::~Application()
 	{
+		LE_PROFILE_FUNCTION();
+
 		Renderer::Shutdown();
 	}
 
 	void Application::Run()
 	{
+		LE_PROFILE_FUNCTION();
+
 		while (bIsRunning)
 		{
+			LE_PROFILE_SCOPE("Engine Loop");
+
 			// TODO: move glfw call to Platform::GetTime()
 			float time = static_cast<float>(glfwGetTime());
 			Timestep timestep = time - m_LastFrameTime;
@@ -45,6 +53,7 @@ namespace LE
 
 			if (m_Minimized == false)
 			{
+				LE_PROFILE_SCOPE("LayerStack OnUpdate");
 				for (Layer* currentLayer : m_LayerStack)
 				{
 					currentLayer->OnUpdate(timestep);
@@ -52,9 +61,12 @@ namespace LE
 			}
 
 			m_ImGuiLayer->Begin();
-			for (Layer* currentLayer : m_LayerStack)
 			{
-				currentLayer->OnImGuiRender();
+				LE_PROFILE_SCOPE("LayerStack OnImGuiRender")
+				for (Layer* currentLayer : m_LayerStack)
+				{
+					currentLayer->OnImGuiRender();
+				}
 			}
 			m_ImGuiLayer->End();
 
@@ -64,16 +76,22 @@ namespace LE
 
 	void Application::PushLayer(Layer* Layer)
 	{
+		LE_PROFILE_FUNCTION();
+
 		m_LayerStack.PushLayer(Layer);
 	}
 
 	void Application::PushOverlay(Layer* Overlay)
 	{
+		LE_PROFILE_FUNCTION();
+
 		m_LayerStack.PushOverlay(Overlay);
 	}
 
 	void Application::OnEvent(Event& e)
 	{
+		LE_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher = EventDispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(LE_BIND(this, &Application::OnWindowCloseCallback));
 		dispatcher.Dispatch<WindowResizeEvent>(LE_BIND(this, &Application::OnWindowResizeCallback));
@@ -96,6 +114,8 @@ namespace LE
 
 	bool Application::OnWindowResizeCallback(const WindowResizeEvent& e)
 	{
+		LE_PROFILE_FUNCTION();
+
 		if (e.GetWidth() == 0 || e.GetHeight() == 0)
 		{
 			m_Minimized = true;

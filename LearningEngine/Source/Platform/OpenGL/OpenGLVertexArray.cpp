@@ -7,21 +7,29 @@ namespace LE
 {
 	OpenGLVertexArray::OpenGLVertexArray()
 	{
+		LE_PROFILE_FUNCTION();
+
 		glCreateVertexArrays(1, &m_RendererId);
 	}
 
 	OpenGLVertexArray::~OpenGLVertexArray()
 	{
+		LE_PROFILE_FUNCTION();
+
 		glDeleteVertexArrays(1, &m_RendererId);
 	}
 
 	void OpenGLVertexArray::Bind() const
 	{
+		LE_PROFILE_FUNCTION();
+
 		glBindVertexArray(m_RendererId);
 	}
 
 	void OpenGLVertexArray::Unbind() const
 	{
+		LE_PROFILE_FUNCTION();
+
 		glBindVertexArray(0);
 	}
 
@@ -48,6 +56,8 @@ namespace LE
 
 	void OpenGLVertexArray::AddVertexBuffer(const TSharedPtr<VertexBuffer>& VertexBuffer)
 	{
+		LE_PROFILE_FUNCTION();
+
 		LE_CORE_ASSERT(VertexBuffer->GetBufferLayout().GetElements().size() > 0, "Vertex Buffer has no layout!");
 
 		glBindVertexArray(m_RendererId);
@@ -73,6 +83,8 @@ namespace LE
 
 	void OpenGLVertexArray::SetIndexBuffer(const TSharedPtr<IndexBuffer>& IndexBuffer)
 	{
+		LE_PROFILE_FUNCTION();
+
 		glBindVertexArray(m_RendererId);
 		IndexBuffer->Bind();
 		m_IndexBuffer = IndexBuffer;

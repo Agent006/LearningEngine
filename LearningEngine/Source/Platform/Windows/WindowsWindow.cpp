@@ -24,16 +24,22 @@ namespace LE
 
 	WindowsWindow::WindowsWindow(const WindowProps& Props)
 	{
+		LE_PROFILE_FUNCTION();
+
 		Init(Props);
 	}
 
 	WindowsWindow::~WindowsWindow()
 	{
+		LE_PROFILE_FUNCTION();
+
 		Shutdown();
 	}
 
 	void WindowsWindow::Init(const WindowProps& Props)
 	{
+		LE_PROFILE_FUNCTION();
+
 		m_Data.Title = Props.Title;
 		m_Data.Width = Props.Width;
 		m_Data.Height = Props.Height;
@@ -42,6 +48,7 @@ namespace LE
 
 		if (s_GLFWInitialized == false)
 		{
+			LE_PROFILE_SCOPE("glfwInit")
 			bool bSuccess = glfwInit();
 			LE_CORE_ASSERT(bSuccess, "Failed to initialize GLFW!");
 
@@ -50,7 +57,10 @@ namespace LE
 			s_GLFWInitialized = true;
 		}
 
-		m_Window = glfwCreateWindow(m_Data.Width, m_Data.Height, m_Data.Title.c_str(), nullptr, nullptr);
+		{
+			LE_PROFILE_SCOPE("glfwCreateWindow")
+			m_Window = glfwCreateWindow(m_Data.Width, m_Data.Height, m_Data.Title.c_str(), nullptr, nullptr);
+		}
 
 		m_Context = OpenGLContext::Create(m_Window);
 		m_Context->Init();
@@ -153,17 +163,23 @@ namespace LE
 
 	void WindowsWindow::Shutdown()
 	{
+		LE_PROFILE_FUNCTION();
+
 		glfwDestroyWindow(m_Window);
 	}
 
 	void WindowsWindow::OnUpdate()
 	{
+		LE_PROFILE_FUNCTION();
+
 		glfwPollEvents();
 		m_Context->SwapBuffers();
 	}
 	
 	void WindowsWindow::SetVSync(bool bEnabled)
 	{
+		LE_PROFILE_FUNCTION();
+
 		glfwSwapInterval(bEnabled);
 		m_Data.bIsVSync = bEnabled;
 	}

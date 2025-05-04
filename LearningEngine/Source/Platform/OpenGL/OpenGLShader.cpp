@@ -21,6 +21,8 @@ namespace LE
 
 	OpenGLShader::OpenGLShader(const std::string& FilePath)
 	{
+		LE_PROFILE_FUNCTION();
+
 		size_t lastSlash = FilePath.find_last_of("/\\");
 		lastSlash = lastSlash == std::string::npos ? 0 : lastSlash + 1;
 		size_t lastDot = FilePath.rfind('.');
@@ -35,6 +37,8 @@ namespace LE
 	OpenGLShader::OpenGLShader(const std::string& Name, const std::string& VertexShader, const std::string& FragmentShader)
 		: m_Name(Name)
 	{
+		LE_PROFILE_FUNCTION();
+
 		std::unordered_map<GLenum, std::string> shaderSrc;
 		shaderSrc.insert({ GL_VERTEX_SHADER, VertexShader });
 		shaderSrc.insert({ GL_FRAGMENT_SHADER, FragmentShader });
@@ -44,11 +48,15 @@ namespace LE
 
 	OpenGLShader::~OpenGLShader()
 	{
+		LE_PROFILE_FUNCTION();
+
 		glDeleteProgram(m_RendererId);
 	}
 
 	std::string OpenGLShader::ReadFile(const std::string& FilePath) const
 	{
+		LE_PROFILE_FUNCTION();
+
 		std::string result;
 
 		std::ifstream in(FilePath, std::ios::in | std::ios::binary);
@@ -79,6 +87,8 @@ namespace LE
 
 	std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::string& Source)
 	{
+		LE_PROFILE_FUNCTION();
+
 		std::unordered_map<GLenum, std::string> shaderSrc;
 
 		const char* typeToken = "#type";
@@ -103,6 +113,8 @@ namespace LE
 
 	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& ShaderSrc)
 	{
+		LE_PROFILE_FUNCTION();
+
 		uint32_t programId = glCreateProgram();
 		const uint32_t MaxNumberOfShaders = 2;
 		LE_CORE_ASSERT(ShaderSrc.size() <= MaxNumberOfShaders, "Only maximum of two shaders are supported at this moment");
@@ -199,31 +211,43 @@ namespace LE
 
 	void OpenGLShader::Bind() const
 	{
+		LE_PROFILE_FUNCTION();
+
 		glUseProgram(m_RendererId);
 	}
 
 	void OpenGLShader::Unbind() const
 	{
+		LE_PROFILE_FUNCTION();
+
 		glUseProgram(0);
 	}
 
 	void OpenGLShader::SetInt(const std::string& Name, int32_t Value)
 	{
+		LE_PROFILE_FUNCTION();
+
 		UploadUniformInt(Name, Value);
 	}
 
 	void OpenGLShader::SetFloat3(const std::string& Name, const glm::vec3& Value)
 	{
+		LE_PROFILE_FUNCTION();
+
 		UploadUniformFloat3(Name, Value);
 	}
 
 	void OpenGLShader::SetFloat4(const std::string& Name, const glm::vec4& Value)
 	{
+		LE_PROFILE_FUNCTION();
+
 		UploadUniformFloat4(Name, Value);
 	}
 
 	void OpenGLShader::SetMat4(const std::string& Name, const glm::mat4& Value)
 	{
+		LE_PROFILE_FUNCTION();
+
 		UploadUniformMat4(Name, Value);
 	}
 

@@ -1423,6 +1423,7 @@
       <Filter>ThirdParty\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="Source\LE\Renderer\Renderer2D.h" />
+    <ClInclude Include="Source\LE\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\LE\Core\Application.cpp">

@@ -14,6 +14,8 @@ namespace LE
 
 	void OpenGLContext::Init()
 	{
+		LE_PROFILE_FUNCTION();
+
 		glfwMakeContextCurrent(m_NativeWindow);
 
 		int gladStatus = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
@@ -26,6 +28,8 @@ namespace LE
 
 	void OpenGLContext::SwapBuffers()
 	{
+		LE_PROFILE_FUNCTION();
+
 		glfwSwapBuffers(m_NativeWindow);
 	}
 }

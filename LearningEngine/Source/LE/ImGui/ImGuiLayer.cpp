@@ -21,6 +21,8 @@ namespace LE
 
 	void ImGuiLayer::OnAttach()
 	{
+		LE_PROFILE_FUNCTION();
+
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
 
@@ -47,19 +49,17 @@ namespace LE
 
 	void ImGuiLayer::OnDetach()
 	{
+		LE_PROFILE_FUNCTION();
+
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
 	}
 
-	void ImGuiLayer::OnImGuiRender()
-	{
-		static bool show = true;
-		ImGui::ShowDemoWindow(&show);
-	}
-
 	void ImGuiLayer::Begin()
 	{
+		LE_PROFILE_FUNCTION();
+
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
@@ -67,9 +67,11 @@ namespace LE
 
 	void ImGuiLayer::End()
 	{
+		LE_PROFILE_FUNCTION();
+
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::Get();
-		io.DisplaySize = ImVec2(static_cast<float>(app.GetWindow().GetWidth()),\
+		io.DisplaySize = ImVec2(static_cast<float>(app.GetWindow().GetWidth()),
 								static_cast<float>(app.GetWindow().GetHeight()));
 
 		ImGui::Render();

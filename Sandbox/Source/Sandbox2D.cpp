@@ -10,16 +10,20 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
+	LE_PROFILE_FUNCTION();
+
 	m_Texture = LE::Texture2D::Create("Assets/Textures/Checkerboard.png");
 }
 
 void Sandbox2D::OnDetach()
 {
-
+	LE_PROFILE_FUNCTION();
 }
 
 void Sandbox2D::OnUpdate(LE::Timestep DeltaTime)
 {
+	LE_PROFILE_FUNCTION();
+
 	m_CameraController.OnUpdate(DeltaTime);
 
 	LE::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.f });
@@ -34,6 +38,8 @@ void Sandbox2D::OnUpdate(LE::Timestep DeltaTime)
 
 void Sandbox2D::OnImGuiRender()
 {
+	LE_PROFILE_FUNCTION();
+
 	ImGui::Begin("Settings");
 	ImGui::ColorPicker4("SquareColor", &m_SquareColor[0]);
 	ImGui::End();

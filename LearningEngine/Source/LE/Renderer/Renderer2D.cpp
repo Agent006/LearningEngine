@@ -20,6 +20,8 @@ namespace LE
 
 	void Renderer2D::Init()
 	{
+		LE_PROFILE_FUNCTION();
+
 		s_Data = new Renderer2DStorage();
 
 		s_Data->VertexArray = VertexArray::Create();
@@ -56,18 +58,22 @@ namespace LE
 
 	void Renderer2D::Shutdown()
 	{
+		LE_PROFILE_FUNCTION();
+
 		delete s_Data;
 	}
 
 	void Renderer2D::BeginScene(const OrthographicCamera& Camera)
 	{
+		LE_PROFILE_FUNCTION();
+
 		s_Data->TextureShader->Bind();
 		s_Data->TextureShader->SetMat4("u_ViewProjection", Camera.GetViewProjectionMatrix());
-
 	}
 
 	void Renderer2D::EndScene()
 	{
+		LE_PROFILE_FUNCTION();
 
 	}
 
@@ -80,6 +86,8 @@ namespace LE
 
 	void Renderer2D::DrawQuad(const glm::vec3& Position, const glm::vec2& Size, const glm::vec4& Color)
 	{
+		LE_PROFILE_FUNCTION();
+
 		s_Data->TextureShader->Bind();
 		s_Data->WhiteTexture->Bind(0);
 
@@ -99,6 +107,8 @@ namespace LE
 
 	void Renderer2D::DrawQuad(const glm::vec3& Position, const glm::vec2& Size, const TSharedPtr<Texture2D>& Texture)
 	{
+		LE_PROFILE_FUNCTION();
+
 		s_Data->TextureShader->Bind();
 		Texture->Bind(0);
 

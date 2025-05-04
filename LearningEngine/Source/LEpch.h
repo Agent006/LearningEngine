@@ -15,6 +15,8 @@
 
 #include "LE/Core/Log.h"
 
+#include "LE/Debug/Instrumentor.h"
+
 #ifdef LE_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif
